@@ -4,7 +4,7 @@
 
 @keyframes scrollUpDown {
   0%, 100% {
-    transform: translateY(20%);
+    transform: translateY(60%);
   }
   50% {
     transform: translateY(-50%);
@@ -12,5 +12,5 @@
 }
 
 .animate-scrollUpDown {
-  animation: scrollUpDown 10s linear infinite;
+  animation: scrollUpDown 15s linear infinite;
 }

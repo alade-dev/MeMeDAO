@@ -14,17 +14,19 @@ const tokens = [
     projects: [
       {
         name: "Funfti.meme",
-        image: giphy2 ,
+        image: giphy2,
         createdBy: "Scholes Doge",
         marketCap: "6.2k",
         status: "Live",
+        projectStatus: "Live project"
       },
       {
         name: "MemeToken",
-        image:giphy3 ,
+        image: giphy3,
         createdBy: "John Smith",
         marketCap: "4.6k",
         status: "-",
+        projectStatus: "Live project"
       },
     ],
   },
@@ -34,17 +36,19 @@ const tokens = [
     projects: [
       {
         name: "Funfti.meme",
-        image: giphy2 ,
+        image: giphy2,
         createdBy: "Scholes Doge",
         marketCap: "6.2k",
         status: "Live",
+        projectStatus: "Live project"
       },
       {
         name: "MemeToken",
-        image:giphy3 ,
+        image: giphy3,
         createdBy: "John Smith",
         marketCap: "4.6k",
         status: "-",
+        projectStatus: "Live project"
       },
     ],
   },
@@ -54,17 +58,19 @@ const tokens = [
     projects: [
       {
         name: "Funfti.meme",
-        image: giphy2 ,
+        image: giphy2,
         createdBy: "Scholes Doge",
         marketCap: "6.2k",
         status: "Live",
+        projectStatus: "Live project"
       },
       {
         name: "MemeToken",
-        image:giphy3 ,
+        image: giphy3,
         createdBy: "John Smith",
         marketCap: "4.6k",
         status: "-",
+        projectStatus: "Live project"
       },
     ],
   },
@@ -74,17 +80,19 @@ const tokens = [
     projects: [
       {
         name: "Funfti.meme",
-        image: giphy2 ,
+        image: giphy2,
         createdBy: "Scholes Doge",
         marketCap: "6.2k",
         status: "Live",
+        projectStatus: "Live project"
       },
       {
         name: "MemeToken",
-        image:giphy3 ,
+        image: giphy3,
         createdBy: "John Smith",
         marketCap: "4.6k",
         status: "-",
+        projectStatus: "Live project"
       },
     ],
   },
@@ -94,10 +102,11 @@ const tokens = [
     projects: [
       {
         name: "NewToken1",
-        image:  giphy4 ,
+        image: giphy4,
         createdBy: "Alice",
         marketCap: "1.2k",
         status: "Live",
+        projectStatus: "Live project"
       },
     ],
   },
@@ -107,10 +116,11 @@ const tokens = [
     projects: [
       {
         name: "GainToken1",
-        image:  giphy5 ,
+        image: giphy5,
         createdBy: "Bob",
         marketCap: "12.3k",
         status: "Live",
+        projectStatus: "Live project"
       },
     ],
   },
@@ -120,10 +130,11 @@ const tokens = [
     projects: [
       {
         name: "FavToken1",
-        image:  giphy6 ,
+        image: giphy6,
         createdBy: "Eve",
         marketCap: "9.4k",
         status: "Inactive",
+        projectStatus: "My project"
       },
     ],
   },
@@ -133,10 +144,11 @@ const tokens = [
     projects: [
       {
         name: "TrendToken1",
-        image:  giphy8 ,
+        image: giphy8,
         createdBy: "Charlie",
         marketCap: "16.7k",
         status: "Live",
+        projectStatus: "Live project"
       },
     ],
   },

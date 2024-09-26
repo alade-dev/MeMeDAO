@@ -1,0 +1,14 @@
+@keyframes bounceDigonal {
+  0%,
+  100% {
+    transform: translate(var(--tx, -10%), var(--ty, 0)) translate(0, 0);
+  }
+  50% {
+    transform: translate(var(--tx, -20%), var(--ty, 0)) translate(5px, -5px);
+  }
+}
+.animate-bounce-diagonal {
+  animation: bounceDigonal 1s ease-in-out infinite;
+}
+
+

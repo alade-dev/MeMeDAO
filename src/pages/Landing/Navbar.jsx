@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 // import logo from "../../assets/logos/logo.png";
 import { motion } from "framer-motion";
 import { useState } from "react";
-import search from "../../assets/icons/search.png";
 
 const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -38,7 +37,7 @@ const NavBar = () => {
 
   return (
     <>
-    <nav className=" flex justify-between lg:relative mx-auto items-center bg-[#2A2A2A] px-8 py-4">
+    <nav className=" flex justify-between lg:relative mx-auto  items-center bg-black px-8 py-4">
       {/* Logo and Brand Name */}
       <Link to="/">
         <motion.div
@@ -74,21 +73,7 @@ const NavBar = () => {
           />
         </svg>
       </button>
-      <div className="relative hidden md:inline-block bg-[#2d2d35] rounded-md w-[429px] px-4 py-2 border border-transparent hover:border-gray-500 focus-within:border-gray-500 transition-colors">
-        {/* Input Field */}
-        <input
-          type="text"
-          placeholder="Search"
-          className="bg-transparent text-white placeholder-gray-400 pr-10 my-2 focus:outline-none w-full"
-        />
-
-        {/* Search Icon */}
-        <img
-          src={search}
-          alt="search"
-          className="absolute right-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400"
-        />
-      </div>
+      
 
       {/* Navigation Links */}
       <div
