@@ -1,0 +1,6 @@
+git[workspace]
+resolver = "2"
+members = [
+    "./src20",
+    "./meme",
+]

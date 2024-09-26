@@ -1,2 +1,5 @@
 [workspace]
-members = [ "contract", "predicate", "script" ]
+members = [
+    "./src-20",
+    "./meme",
+]
