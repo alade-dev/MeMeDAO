@@ -1,5 +1,5 @@
 [[package]]
-name = "MemeDAO"
+name = "Memetro"
 source = "member"
 dependencies = ["std"]
 
