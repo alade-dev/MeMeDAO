@@ -7,10 +7,34 @@ import {
   giphy6,
   giphy8,
 } from "../../assets/gif/index";
-import { wallet, arrow } from "../../assets/icons/index";
+import { wallet as wallet1, arrow } from "../../assets/icons/index";
 import RotatingMemes from "../../components/RotatingMemes";
 
+import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import {
+  useConnectUI,
+  useIsConnected,
+  useWallet,
+} from "@fuels/react";
+
 const Hero = () => {
+  const { connect, isConnecting } = useConnectUI();
+  const { isConnected } = useIsConnected();
+  const { wallet } = useWallet();
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (wallet) {
+      setLoading(false);
+    }
+  }, [wallet]);
+  const handleConnect = () => {
+    if (!isConnected) {
+      connect();
+    }
+  };
+
   return (
     <section className="relative bg-gradient-to-r from-[#2A2A2A]  to-[#15315f] py-16 px-6 text-white">
       <div className="container mx-auto flex flex-col lg:flex-row items-center justify-between">
@@ -22,14 +46,25 @@ const Hero = () => {
           </h1>
 
           <div className="flex space-x-4 mb-12 justify-center lg:justify-start">
-            <button className="bg-[#4782E0] text-white px-6 py-3 rounded-lg flex items-center space-x-2 hover:bg-blue-600">
-              <span>Connect wallet</span>
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              className="bg-[#4782E0] transition-colors duration-200 text-white px-7 w-fit flex gap-x-3 items-center py-3 text-md rounded-md hover:bg-[#5892f0]"
+              onClick={handleConnect}
+            >
+              {isConnecting
+                ? "Connecting..."
+                : isConnected
+                  ? loading
+                    ? "Loading..."
+                    : `${wallet?.address.toAddress().slice(0, 8)}...${wallet?.address.toAddress().slice(-5)}`
+                  : "Connect Wallet"}
+              
               <img
-                src={wallet}
+                src={wallet1}
                 alt="wallet"
                 className="w-5 h-5 object-contain"
               />
-            </button>
+            </motion.button>
             <Link to="/create">
               <button className="bg-transparent border border-gray-400 text-white px-6 py-3 rounded-lg flex items-center space-x-2 hover:bg-gray-600">
                 <span>Create your Token</span>
