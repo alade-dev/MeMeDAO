@@ -1,14 +1,12 @@
-import { useWallet } from "./wallet-context.js";
-import ConnectWalletModal from "./components/ConnectWalletModal.js";
-import { useNavigate } from "react-router-dom"; // import your modal component
+/* eslint-disable react/prop-types */
+import { useWallet } from "./context/WalletProvider.jsx";
+import ConnectWalletModal from "./components/ConnectWalletModal.jsx";
 
 const ProtectedRoute = ({ children }) => {
-  const { isConnected } = useWallet();
+  const { isConnected, wallet } = useWallet();
 
-  const navigate = useNavigate();
-
-  if (!isConnected) {
-    return <ConnectWalletModal navigate={navigate} />; // Display modal instead of navigating away
+  if (!isConnected || !wallet) {
+    return <ConnectWalletModal />;
   }
 
   return children;

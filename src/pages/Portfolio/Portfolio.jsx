@@ -2,7 +2,6 @@ import { useState } from "react";
 import tokens from "../../data";
 import { Link } from "react-router-dom";
 
-
 import search from "../../assets/icons/search.png";
 import { backarrow, bag, buydoor, filecheck } from "../../assets/icons";
 
@@ -19,7 +18,11 @@ const Portfolio = () => {
       <div className="flex mb-4 justify-between items-center">
         <Link to="/">
           <button className="px-4 h-10 bg-[#4782E0] text-white rounded-lg hover:bg-blue-700">
-            <img src={backarrow} alt="back" className="w-4 h-4 object-contain" />
+            <img
+              src={backarrow}
+              alt="back"
+              className="w-4 h-4 object-contain"
+            />
           </button>
         </Link>
         <h2 className="text-3xl md:text-5xl font-medium text-center flex-grow">
@@ -43,30 +46,28 @@ const Portfolio = () => {
             >
               <span>{category}</span>
               <img
-                  src={selectedCategory === category ? buydoor : filecheck }
-                  alt="Arrow"
-                  className="w-4 h-4 object-contain"
-                />
+                src={selectedCategory === category ? buydoor : filecheck}
+                alt="Arrow"
+                className="w-4 h-4 object-contain"
+              />
             </button>
-
           ))}
         </div>
         <div className="relative hidden md:inline-block bg-[#2d2d35] rounded-md w-[429px] px-4 py-2 border border-transparent hover:border-gray-500 focus-within:border-gray-500 transition-colors">
-        {/* Input Field */}
-        <input
-          type="text"
-          placeholder="Search"
-          className="bg-transparent text-white placeholder-gray-400 pr-10 my-2 focus:outline-none w-full"
-        />
+          {/* Input Field */}
+          <input
+            type="text"
+            placeholder="Search"
+            className="bg-transparent text-white placeholder-gray-400 pr-10 my-2 focus:outline-none w-full"
+          />
 
-        {/* Search Icon */}
-        <img
-          src={search}
-          alt="search"
-          className="absolute right-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400"
-        />
-      </div>
-
+          {/* Search Icon */}
+          <img
+            src={search}
+            alt="search"
+            className="absolute right-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400"
+          />
+        </div>
       </div>
       <div className="flex items-center mb-6">
         <p className="text-sm pl-3 text-[#D9D9D9] font-bold">Collection</p>
@@ -94,9 +95,13 @@ const Portfolio = () => {
               </div>
             </div>
             <div className="flex flex-row items-start lg:ml-7 gap-56 text-start">
-              <p className="text-sm text-left text-[#D9D9D9]">{project.createdBy}</p>
+              <p className="text-sm text-left text-[#D9D9D9]">
+                {project.createdBy}
+              </p>
               <p className="text-sm text-[#D9D9D9]">{project.marketCap}</p>
-              <p className={`text-sm font-bold ${project.status === "Live" ? "text-green-500" : "text-[#D9D9D9]"}`}>
+              <p
+                className={`text-sm font-bold ${project.status === "Live" ? "text-green-500" : "text-[#D9D9D9]"}`}
+              >
                 {project.status}
               </p>
             </div>
