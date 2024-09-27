@@ -1,0 +1,1 @@
+export { TestContract } from './TokenContract';
