@@ -29,7 +29,7 @@ use sway_libs::{
         only_owner,
     },
 };
-use interface::Constructor;
+use interface::{Constructor, Set_attributes,};
 use std::{context::msg_amount, hash::Hash, storage::storage_string::*, string::String,};
 
 storage {
@@ -514,5 +514,41 @@ impl Constructor for Contract {
     #[storage(read, write)]
     fn constructor(owner: Identity) {
         initialize_ownership(owner);
+    }
+}
+
+impl Set_attributes for Contract {
+    #[storage(write)]
+    fn set_asset_attributes(asset: AssetId, name: String, symbol: String, decimals: u8) {
+        only_owner();
+
+        require(
+            storage
+                .name
+                .get(asset)
+                .read_slice()
+                .is_none(),
+            SetError::ValueAlreadySet,
+        );
+        _set_name(storage.name, asset, name);
+
+       require(
+            storage
+                .symbol
+                .get(asset)
+                .read_slice()
+                .is_none(),
+            SetError::ValueAlreadySet,
+        );
+        _set_symbol(storage.symbol, asset, symbol);
+        require(
+            storage
+                .decimals
+                .get(asset)
+                .try_read()
+                .is_none(),
+            SetError::ValueAlreadySet,
+        );
+        _set_decimals(storage.decimals, asset, decimals);
     }
 }
