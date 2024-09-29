@@ -48,5 +48,7 @@ export async function initializeContract(contract) {
     const identityInput = { Address: addressInput };
 }
 
-export async function buyToken(contractId, )
+export async function buyToken(contractId) {
+    
+}
 //0x8dceb621baf9b06d6df8f7160e3c20b5ae2bf0b933920a92e78ee8a546939588 {bits: '0xae27e13c21cd096f7ff809af576fe9895338106f377b7032a435ae0916f447ca'} 0xbdd07a8f06b2191a2e9e670d94fc112a2ada7a3d38764954ed7891ed1a18c7dc' '0xad8879ed88e19382468d15c9d6dfc5e9c1697aa48de6094e459a820a14b1284a
