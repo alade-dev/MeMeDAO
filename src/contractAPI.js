@@ -1,6 +1,6 @@
-import { Src20, Src20Factory } from "../../sway-api";
+import { Src20, Src20Factory } from "./sway-api";
 import { getRandomB256 } from "fuels";
-import { createAssetId, stdString, createString } from "../../utils/assetId";
+import { createAssetId, stdString, createString } from "./utils/assetId";
 import { bn } from "fuels";
 
 const contractId =
