@@ -5,6 +5,7 @@ import { giphy2, giphy3, giphy4 } from "../../assets/gif/index";
 import "./CreateToken.css";
 import { deployTokenContract } from "../../contractAPI";
 import { useWallet } from "@fuels/react";
+import { motion } from "framer-motion";
 
 const CreateToken = () => {
   const memeImages = [giphy2, giphy3, giphy4];
@@ -15,6 +16,8 @@ const CreateToken = () => {
   ];
 
   const [currentRotation, setCurrentRotation] = useState(0);
+  const [imagePreview, setImagePreview] = useState(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const { wallet } = useWallet();
   const [formData, setFormData] = useState({
     name: "",
@@ -25,9 +28,9 @@ const CreateToken = () => {
   });
 
   const createToken = async (e) => {
-    e.preventDefault(); 
-    console.log(formData);
-    await deployTokenContract(wallet)
+    e.preventDefault();
+    // console.log(formData);
+    await deployTokenContract(wallet);
   };
 
   useEffect(() => {
@@ -39,12 +42,46 @@ const CreateToken = () => {
   }, []);
 
   const handleChange = (e) => {
-    const { name, value, files } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: files ? files[0] : value, // Handle file input separately
-    }));
+    const { name, value } = e.target;
+    setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setFormData({ ...formData, image: file });
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImagePreview(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleRemoveImage = () => {
+    setFormData((prevData) => ({ ...prevData, image: null }));
+    setImagePreview(null);
+    document.getElementById("banner").value = "";
+  };
+
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   setIsSubmitting(true);
+
+  //   try {
+  //     setFormData({
+  //       name: "",
+  //       ticker: "",
+  //       description: "",
+  //       createdBy: "",
+  //       image: null,
+  //     });
+  //   } catch (error) {
+  //     console.error(error);
+  //   } finally {
+  //     setIsSubmitting(false);
+  //   }
+  // };
 
   return (
     <div className="min-h-screen mx-auto flex justify-center lg:pt-25 px-10 pt-20 bg-gray-900">
@@ -130,25 +167,46 @@ const CreateToken = () => {
                   Image<span className="text-red-700">*</span>
                 </label>
                 <input
+                  id="banner"
                   type="file"
                   name="image"
                   accept="image/*.GIF,.gif"
-                  onChange={handleChange}
+                  onChange={handleFileChange}
                   className="w-full px-4 py-2 rounded-lg bg-[#2A2A2A] text-white border border-gray-600"
                 />
               </div>
+              {imagePreview && (
+                <div className="mb-4">
+                  <img
+                    src={imagePreview}
+                    alt="Banner Preview"
+                    className="max-w-44 h-auto"
+                  />
+                  <button
+                    type="button"
+                    onClick={handleRemoveImage}
+                    className="mt-2 bg-red-500 text-white px-4 py-2 rounded"
+                  >
+                    Remove Image
+                  </button>
+                </div>
+              )}
               <div className="flex justify-end">
-                <button
+                <motion.button
+                  whileHover={{
+                    scale: 1.1,
+                  }}
                   type="submit"
+                  disabled={isSubmitting}
                   className="bg-[#4782E0] text-white text-md px-6 py-3 rounded-lg flex items-center space-x-2 hover:bg-blue-600"
                 >
-                  <span>Create Now</span>
+                  <span>{isSubmitting ? "Submitting..." : "Create Now"}</span>
                   <img
                     src={mark}
                     alt="mark"
                     className="w-4 h-4 object-contain"
                   />
-                </button>
+                </motion.button>
               </div>
             </form>
           </div>
