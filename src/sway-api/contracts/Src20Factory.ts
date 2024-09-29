@@ -4,9 +4,11 @@
 // /* eslint-disable @typescript-eslint/no-unused-vars */
 // /* eslint-disable @typescript-eslint/consistent-type-imports */
 
-// /*
-//   Fuels version: 0.94.8
-// */
+/*
+  Fuels version: 0.94.6
+  Forc version: 0.63.5
+  Fuel-Core version: 0.35.0
+*/
 
 // import { Contract, ContractFactory, decompressBytecode } from "fuels";
 // import type { Provider, Account, DeployContractOptions, DeployContractResult } from "fuels";
