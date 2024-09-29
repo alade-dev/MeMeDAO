@@ -12,11 +12,7 @@ import RotatingMemes from "../../components/RotatingMemes";
 
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import {
-  useConnectUI,
-  useIsConnected,
-  useWallet,
-} from "@fuels/react";
+import { useConnectUI, useIsConnected, useWallet } from "@fuels/react";
 
 import { getTokenContract, setToken } from "../../contractAPI";
 
@@ -60,7 +56,7 @@ const Hero = () => {
                     ? "Loading..."
                     : `${wallet?.address.toAddress().slice(0, 8)}...${wallet?.address.toAddress().slice(-5)}`
                   : "Connect Wallet"}
-              
+
               <img
                 src={wallet1}
                 alt="wallet"
@@ -79,7 +75,7 @@ const Hero = () => {
             </Link>
           </div>
 
-          <Link to={"/token"}>
+          <Link to={"/"}>
             <div className="bg-transparent border cursor-pointer border-fuchsia-300/20 border-r-0 p-6 rounded-xl shadow-md w-full max-w-lg text-center lg:text-left mb-16">
               <h2 className="text-3xl font-bold mb-4">Explore the trends</h2>
               <div className="flex items-center space-x-4">
