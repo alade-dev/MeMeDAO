@@ -5,9 +5,9 @@
 /* eslint-disable @typescript-eslint/consistent-type-imports */
 
 /*
-  Fuels version: 0.94.6
-  Forc version: 0.63.5
-  Fuel-Core version: 0.35.0
+  Fuels version: 0.94.8
+  Forc version: 0.64.0
+  Fuel-Core version: 0.36.0
 */
 
 import { Contract, Interface } from "fuels";
@@ -26,8 +26,6 @@ import type {
 
 import type { Option, Enum } from "./common";
 
-export enum AccessErrorInput { NotOwner = 'NotOwner' };
-export enum AccessErrorOutput { NotOwner = 'NotOwner' };
 export enum AmountErrorInput { AmountMismatch = 'AmountMismatch' };
 export enum AmountErrorOutput { AmountMismatch = 'AmountMismatch' };
 export enum BurnErrorInput { NotEnoughCoins = 'NotEnoughCoins' };
@@ -85,24 +83,19 @@ const abi = {
       "metadataTypeId": 2
     },
     {
-      "type": "enum standards::src5::AccessError",
-      "concreteTypeId": "3f702ea3351c9c1ece2b84048006c8034a24cbc2bad2e740d0412b4172951d3d",
-      "metadataTypeId": 3
-    },
-    {
       "type": "enum standards::src5::State",
       "concreteTypeId": "192bc7098e2fe60635a9918afb563e4e5419d386da2bdbf0d716b4bc8549802c",
-      "metadataTypeId": 4
+      "metadataTypeId": 3
     },
     {
       "type": "enum std::identity::Identity",
       "concreteTypeId": "ab7cd04e05be58e3fc15d424c2c4a57f824a2a2d97d67252440a3925ebdc1335",
-      "metadataTypeId": 5
+      "metadataTypeId": 4
     },
     {
       "type": "enum std::option::Option<struct std::string::String>",
       "concreteTypeId": "7c06d929390a9aeeb8ffccf8173ac0d101a9976d99dda01cce74541a81e75ac0",
-      "metadataTypeId": 6,
+      "metadataTypeId": 5,
       "typeArguments": [
         "9a7f1d3e963c10e0a4ea70a8e20a4813d1dc5682e28f74cb102ae50d32f7f98c"
       ]
@@ -110,7 +103,7 @@ const abi = {
     {
       "type": "enum std::option::Option<u64>",
       "concreteTypeId": "d852149004cc9ec0bbe7dc4e37bffea1d41469b759512b6136f2e865a4c06e7d",
-      "metadataTypeId": 6,
+      "metadataTypeId": 5,
       "typeArguments": [
         "1506e6f44c1d6291cdf46395a8e573276a4fa79e8ace3fc891e092ef32d1b0a0"
       ]
@@ -118,7 +111,7 @@ const abi = {
     {
       "type": "enum std::option::Option<u8>",
       "concreteTypeId": "2da102c46c7263beeed95818cd7bee801716ba8303dddafdcd0f6c9efda4a0f1",
-      "metadataTypeId": 6,
+      "metadataTypeId": 5,
       "typeArguments": [
         "c89951a24c6ca28c13fd1cfdc646b2b656d69e61a92b91023be7eb58eb914b6b"
       ]
@@ -126,27 +119,27 @@ const abi = {
     {
       "type": "enum sway_libs::asset::errors::BurnError",
       "concreteTypeId": "3acdc2adac8e0589c5864525e0edc9dc61a9571a4d09c3c57b58ea76d33f4b46",
-      "metadataTypeId": 7
+      "metadataTypeId": 6
     },
     {
       "type": "enum sway_libs::ownership::errors::InitializationError",
       "concreteTypeId": "1dfe7feadc1d9667a4351761230f948744068a090fe91b1bc6763a90ed5d3893",
-      "metadataTypeId": 8
+      "metadataTypeId": 7
     },
     {
       "type": "struct std::asset_id::AssetId",
       "concreteTypeId": "c0710b6731b1dd59799cf6bef33eee3b3b04a2e40e80a0724090215bbf2ca974",
-      "metadataTypeId": 12
+      "metadataTypeId": 11
     },
     {
       "type": "struct std::string::String",
       "concreteTypeId": "9a7f1d3e963c10e0a4ea70a8e20a4813d1dc5682e28f74cb102ae50d32f7f98c",
-      "metadataTypeId": 16
+      "metadataTypeId": 15
     },
     {
       "type": "struct sway_libs::ownership::events::OwnershipSet",
       "concreteTypeId": "e1ef35033ea9d2956f17c3292dea4a46ce7d61fdf37bbebe03b7b965073f43b5",
-      "metadataTypeId": 17
+      "metadataTypeId": 16
     },
     {
       "type": "u64",
@@ -189,18 +182,8 @@ const abi = {
       ]
     },
     {
-      "type": "enum standards::src5::AccessError",
-      "metadataTypeId": 3,
-      "components": [
-        {
-          "name": "NotOwner",
-          "typeId": "2e38e77b22c314a449e91fafed92a43826ac6aa403ae6a8acb6cf58239fbaf5d"
-        }
-      ]
-    },
-    {
       "type": "enum standards::src5::State",
-      "metadataTypeId": 4,
+      "metadataTypeId": 3,
       "components": [
         {
           "name": "Uninitialized",
@@ -208,7 +191,7 @@ const abi = {
         },
         {
           "name": "Initialized",
-          "typeId": 5
+          "typeId": 4
         },
         {
           "name": "Revoked",
@@ -218,21 +201,21 @@ const abi = {
     },
     {
       "type": "enum std::identity::Identity",
-      "metadataTypeId": 5,
+      "metadataTypeId": 4,
       "components": [
         {
           "name": "Address",
-          "typeId": 11
+          "typeId": 10
         },
         {
           "name": "ContractId",
-          "typeId": 15
+          "typeId": 14
         }
       ]
     },
     {
       "type": "enum std::option::Option",
-      "metadataTypeId": 6,
+      "metadataTypeId": 5,
       "components": [
         {
           "name": "None",
@@ -240,16 +223,16 @@ const abi = {
         },
         {
           "name": "Some",
-          "typeId": 9
+          "typeId": 8
         }
       ],
       "typeParameters": [
-        9
+        8
       ]
     },
     {
       "type": "enum sway_libs::asset::errors::BurnError",
-      "metadataTypeId": 7,
+      "metadataTypeId": 6,
       "components": [
         {
           "name": "NotEnoughCoins",
@@ -259,7 +242,7 @@ const abi = {
     },
     {
       "type": "enum sway_libs::ownership::errors::InitializationError",
-      "metadataTypeId": 8,
+      "metadataTypeId": 7,
       "components": [
         {
           "name": "CannotReinitialized",
@@ -269,15 +252,15 @@ const abi = {
     },
     {
       "type": "generic T",
-      "metadataTypeId": 9
+      "metadataTypeId": 8
     },
     {
       "type": "raw untyped ptr",
-      "metadataTypeId": 10
+      "metadataTypeId": 9
     },
     {
       "type": "struct std::address::Address",
-      "metadataTypeId": 11,
+      "metadataTypeId": 10,
       "components": [
         {
           "name": "bits",
@@ -287,7 +270,7 @@ const abi = {
     },
     {
       "type": "struct std::asset_id::AssetId",
-      "metadataTypeId": 12,
+      "metadataTypeId": 11,
       "components": [
         {
           "name": "bits",
@@ -297,11 +280,11 @@ const abi = {
     },
     {
       "type": "struct std::bytes::Bytes",
-      "metadataTypeId": 13,
+      "metadataTypeId": 12,
       "components": [
         {
           "name": "buf",
-          "typeId": 14
+          "typeId": 13
         },
         {
           "name": "len",
@@ -311,11 +294,11 @@ const abi = {
     },
     {
       "type": "struct std::bytes::RawBytes",
-      "metadataTypeId": 14,
+      "metadataTypeId": 13,
       "components": [
         {
           "name": "ptr",
-          "typeId": 10
+          "typeId": 9
         },
         {
           "name": "cap",
@@ -325,7 +308,7 @@ const abi = {
     },
     {
       "type": "struct std::contract_id::ContractId",
-      "metadataTypeId": 15,
+      "metadataTypeId": 14,
       "components": [
         {
           "name": "bits",
@@ -335,21 +318,21 @@ const abi = {
     },
     {
       "type": "struct std::string::String",
-      "metadataTypeId": 16,
+      "metadataTypeId": 15,
       "components": [
         {
           "name": "bytes",
-          "typeId": 13
+          "typeId": 12
         }
       ]
     },
     {
       "type": "struct sway_libs::ownership::events::OwnershipSet",
-      "metadataTypeId": 17,
+      "metadataTypeId": 16,
       "components": [
         {
           "name": "new_owner",
-          "typeId": 5
+          "typeId": 4
         }
       ]
     }
@@ -2715,10 +2698,6 @@ const abi = {
       "concreteTypeId": "3acdc2adac8e0589c5864525e0edc9dc61a9571a4d09c3c57b58ea76d33f4b46"
     },
     {
-      "logId": "4571204900286667806",
-      "concreteTypeId": "3f702ea3351c9c1ece2b84048006c8034a24cbc2bad2e740d0412b4172951d3d"
-    },
-    {
       "logId": "17188485204969729195",
       "concreteTypeId": "ee89c439b5472cab716006d7c677d16e15301e6c82cfce12cebfa57919f537de"
     },
@@ -2740,7 +2719,7 @@ const abi = {
     {
       "name": "MAX_SUPPLY",
       "concreteTypeId": "1506e6f44c1d6291cdf46395a8e573276a4fa79e8ace3fc891e092ef32d1b0a0",
-      "offset": 37264
+      "offset": 34696
     }
   ]
 };

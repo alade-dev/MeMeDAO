@@ -28,9 +28,6 @@ const Hero = () => {
 
   useEffect(() => {
     if (wallet) {
-      const contract = getTokenContract(wallet);
-      console.log(contract)
-      setToken(contract);
       setLoading(false);
     }
   }, [wallet]);

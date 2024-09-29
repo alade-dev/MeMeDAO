@@ -1,15 +1,7 @@
-import { Account, BN } from 'fuels';
-
 export const CURRENT_ENVIRONMENT = process.env.VITE_DAPP_ENVIRONMENT
 
 // The node URL is determined by the current environment too.
 export const NODE_URL ='https://testnet.fuel.network/v1/graphql';
-
-// export interface AppWallet {
-//   wallet?: Account;
-//   walletBalance?: BN;
-//   refreshWalletBalance?: () => Promise<void>;
-// }
 
 export const TESTNET_FAUCET_LINK = 'https://faucet-testnet.fuel.network/';
 
