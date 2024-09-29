@@ -1,5 +1,7 @@
+<br><br>
+
 <p align="center">
-  <img src="./src/assets/icons/logo.png" alt="Memetro Logo" width="200px">
+  <img src="src/assets/icons/Frame 107.png" alt="Memetro Logo" width="200px">
 </p>
 
 # Memetro
