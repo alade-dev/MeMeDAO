@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { backarrow, mark } from "../../assets/icons";
 import { giphy2, giphy3, giphy4 } from "../../assets/gif/index";
 import "./CreateToken.css";
@@ -26,6 +26,8 @@ const CreateToken = () => {
     createdBy: "",
     image: null,
   });
+
+  const navigate = useNavigate();
 
   const createToken = async (e) => {
     e.preventDefault();
@@ -66,24 +68,26 @@ const CreateToken = () => {
     document.getElementById("banner").value = "";
   };
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   setIsSubmitting(true);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    await createToken(e);
 
-  //   try {
-  //     setFormData({
-  //       name: "",
-  //       ticker: "",
-  //       description: "",
-  //       createdBy: "",
-  //       image: null,
-  //     });
-  //   } catch (error) {
-  //     console.error(error);
-  //   } finally {
-  //     setIsSubmitting(false);
-  //   }
-  // };
+    try {
+      setFormData({
+        name: "",
+        ticker: "",
+        description: "",
+        createdBy: "",
+        image: null,
+      });
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsSubmitting(false);
+      navigate("/token/Funfti.meme");
+    }
+  };
 
   return (
     <div className="min-h-screen mx-auto flex justify-center lg:pt-25 px-10 pt-20 bg-gray-900">
@@ -107,7 +111,7 @@ const CreateToken = () => {
 
         <div className="flex flex-col lg:flex-row items-start pt-12 lg:space-x-12">
           <div className="bg-gradient-to-r from-gray-300/20 to-gray-800/30 border border-fuchsia-300/20 p-8 rounded-lg shadow-lg w-full lg:w-1/2 mb-6 lg:mb-0">
-            <form className="space-y-4" onSubmit={createToken}>
+            <form className="space-y-4" onSubmit={handleSubmit}>
               <div>
                 <label className="block text-sm text-gray-300">
                   Name<span className="text-red-700">*</span>

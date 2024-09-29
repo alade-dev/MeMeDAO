@@ -2,7 +2,7 @@ import { TrendingUp, TrendingDown } from "lucide-react";
 import { Link } from "react-router-dom";
 import { LineChart, Line, XAxis, YAxis, ResponsiveContainer } from "recharts";
 import { backarrow, fuel } from "../../assets/icons";
-import { giphy5 } from "../../assets/gif";
+import { giphy2 } from "../../assets/gif";
 import { useState } from "react";
 
 const data = [
@@ -14,20 +14,20 @@ const data = [
 
 const Token = () => {
   const [comments, setComments] = useState([
-    {
-      user: "John123",
-      date: "29/05/2019",
-      text: "I knew this was a lucky shot, here comes the lambo",
-      upvotes: 5,
-      downvotes: 5,
-    },
-    {
-      user: "Jane456",
-      date: "01/06/2019",
-      text: "The market seems volatile today.",
-      upvotes: 3,
-      downvotes: 2,
-    },
+    // {
+    //   user: "John123",
+    //   date: "29/05/2019",
+    //   text: "I knew this was a lucky shot, here comes the lambo",
+    //   upvotes: 5,
+    //   downvotes: 5,
+    // },
+    // {
+    //   user: "Jane456",
+    //   date: "01/06/2019",
+    //   text: "The market seems volatile today.",
+    //   upvotes: 3,
+    //   downvotes: 2,
+    // },
   ]);
   const [newComment, setNewComment] = useState("");
 
@@ -124,12 +124,12 @@ const Token = () => {
             </div>
             <div className="bg-[#2E2E35] rounded-lg p-3">
               <div className="bg-[#2A2A2A] rounded-lg p-4">
-                <h2 className="text-2xl font-bold mb-4">Project MemeX</h2>
+                <h2 className="text-2xl font-bold mb-4">Project Funfti.meme</h2>
                 <div className="bg-transparent  p-6  w-full max-w-lg text-center lg:text-left ">
                   <div className="flex items-center space-x-4">
                     {/* Meme image */}
                     <img
-                      src={giphy5}
+                      src={giphy2}
                       alt="Meme"
                       className="h-fit w-[160px] rounded-xl object-cover"
                     />
@@ -139,13 +139,13 @@ const Token = () => {
                       <p>
                         Created by:{" "}
                         <span className="bg-gradient-to-r from-[#4782E0] to-fuchsia-300 bg-clip-text text-transparent">
-                          Joshj
+                          Toheeb
                         </span>
                       </p>
-                      <p>2 days ago</p>
-                      <p>Progress (95%)</p>
+                      <p>less than minutes ago</p>
+                      <p>Progress (0%)</p>
 
-                      <p className="mt-3">31k/32k matcap</p>
+                      <p className="mt-3">0k/32k matcap</p>
                       <div className="bg-white rounded-full h-2 w-full mt-1">
                         <div
                           className="bg-[#4782E0] h-2 rounded-full"
@@ -157,7 +157,7 @@ const Token = () => {
                 </div>
                 <p className="text-sm font-semibold mb-4">
                   When the market cap reaches $0 all the liquidity from the
-                  bonding curve will be deposited into Paydium and burned,
+                  bonding curve will be deposited into DAO and burned,
                   progression increases as the price goes up.
                 </p>
                 <p className="text-sm">
@@ -188,14 +188,14 @@ const Token = () => {
                 <h2 className="text-xl font-semibold mb-4">
                   Holder Distributions
                 </h2>
-                <div className="space-y-2">
+                {/* <div className="space-y-2">
                   {[1, 2, 3, 4, 5].map((_, index) => (
                     <div key={index} className="flex justify-between">
                       <span>{index + 1}. John1234</span>
                       <span>34.28%</span>
                     </div>
                   ))}
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
