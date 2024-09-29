@@ -9,5 +9,6 @@ import mark from "./mark.png"
 import buydoor from "./buydoor.png"
 import filecheck from "./filecheck.png"
 import fuel from './fuel.png'
+import logoapp from "./Frame 107.png"
 
-export { arrow, logo, wallet, smile, pen, bag, backarrow, mark, buydoor, filecheck, fuel };
+export { arrow, logo, wallet, smile, pen, bag, backarrow, mark, buydoor, filecheck, fuel, logoapp };

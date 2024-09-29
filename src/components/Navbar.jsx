@@ -10,6 +10,7 @@ import {
   useDisconnect
 } from "@fuels/react";
 import { LogOut } from "lucide-react";
+import { logoapp } from "../assets/icons";
 
 const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -67,9 +68,7 @@ const NavBar = () => {
           }}
           className="flex items-center space-x-2"
         >
-          <span className="h-2.5 w-2.5 rounded-full bg-red-500"></span>
-          <span className="h-2.5 w-2.5 rounded-full bg-green-500"></span>
-          <span className="h-2.5 w-2.5 rounded-full bg-blue-500"></span>
+          <img src={logoapp} alt="logo" className="w-fit h-fit object-contain" />
         </motion.div>
       </Link>
 
