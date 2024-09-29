@@ -26,7 +26,6 @@ use sway_libs::{
     ownership::{
         _owner,
         initialize_ownership,
-        only_owner,
     },
 };
 use interface::{Constructor, Set_attributes,};
@@ -241,7 +240,6 @@ impl SRC3 for Contract {
     /// ```
     #[storage(read, write)]
     fn mint(recipient: Identity, sub_id: SubId, amount: u64) {
-        only_owner();
 
         let asset = AssetId::new(ContractId::this(), sub_id);
         let cumulative_supply = storage.cumulative_supply.get(asset).try_read().unwrap_or(0);
@@ -373,7 +371,6 @@ impl SetAssetAttributes for Contract {
     /// ```
     #[storage(write)]
     fn set_name(asset: AssetId, name: String) {
-        only_owner();
 
         require(
             storage
@@ -420,7 +417,6 @@ impl SetAssetAttributes for Contract {
     /// ```
     #[storage(write)]
     fn set_symbol(asset: AssetId, symbol: String) {
-        only_owner();
 
         require(
             storage
@@ -466,8 +462,6 @@ impl SetAssetAttributes for Contract {
     /// ```
     #[storage(write)]
     fn set_decimals(asset: AssetId, decimals: u8) {
-        only_owner();
-
         require(
             storage
                 .decimals
@@ -520,8 +514,6 @@ impl Constructor for Contract {
 impl Set_attributes for Contract {
     #[storage(write)]
     fn set_asset_attributes(asset: AssetId, name: String, symbol: String, decimals: u8) {
-        only_owner();
-
         require(
             storage
                 .name
@@ -530,8 +522,6 @@ impl Set_attributes for Contract {
                 .is_none(),
             SetError::ValueAlreadySet,
         );
-        _set_name(storage.name, asset, name);
-
        require(
             storage
                 .symbol
@@ -540,7 +530,6 @@ impl Set_attributes for Contract {
                 .is_none(),
             SetError::ValueAlreadySet,
         );
-        _set_symbol(storage.symbol, asset, symbol);
         require(
             storage
                 .decimals
@@ -549,6 +538,8 @@ impl Set_attributes for Contract {
                 .is_none(),
             SetError::ValueAlreadySet,
         );
+        _set_name(storage.name, asset, name);
+        _set_symbol(storage.symbol, asset, symbol);
         _set_decimals(storage.decimals, asset, decimals);
     }
 

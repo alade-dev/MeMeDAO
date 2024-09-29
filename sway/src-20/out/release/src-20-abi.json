@@ -9,20 +9,48 @@
     },
     {
       "typeId": 1,
-      "type": "b256",
-      "components": null,
+      "type": "(_, _, _)",
+      "components": [
+        {
+          "name": "__tuple_element",
+          "type": 8,
+          "typeArguments": [
+            {
+              "name": "",
+              "type": 19,
+              "typeArguments": null
+            }
+          ]
+        },
+        {
+          "name": "__tuple_element",
+          "type": 8,
+          "typeArguments": [
+            {
+              "name": "",
+              "type": 19,
+              "typeArguments": null
+            }
+          ]
+        },
+        {
+          "name": "__tuple_element",
+          "type": 8,
+          "typeArguments": [
+            {
+              "name": "",
+              "type": 22,
+              "typeArguments": null
+            }
+          ]
+        }
+      ],
       "typeParameters": null
     },
     {
       "typeId": 2,
-      "type": "enum AccessError",
-      "components": [
-        {
-          "name": "NotOwner",
-          "type": 0,
-          "typeArguments": null
-        }
-      ],
+      "type": "b256",
+      "components": null,
       "typeParameters": null
     },
     {
@@ -161,7 +189,7 @@
       "components": [
         {
           "name": "bits",
-          "type": 1,
+          "type": 2,
           "typeArguments": null
         }
       ],
@@ -173,7 +201,7 @@
       "components": [
         {
           "name": "bits",
-          "type": 1,
+          "type": 2,
           "typeArguments": null
         }
       ],
@@ -190,7 +218,7 @@
         },
         {
           "name": "len",
-          "type": 20,
+          "type": 21,
           "typeArguments": null
         }
       ],
@@ -202,7 +230,7 @@
       "components": [
         {
           "name": "bits",
-          "type": 1,
+          "type": 2,
           "typeArguments": null
         }
       ],
@@ -231,7 +259,7 @@
         },
         {
           "name": "cap",
-          "type": 20,
+          "type": 21,
           "typeArguments": null
         }
       ],
@@ -239,6 +267,12 @@
     },
     {
       "typeId": 19,
+      "type": "struct StorageString",
+      "components": [],
+      "typeParameters": null
+    },
+    {
+      "typeId": 20,
       "type": "struct String",
       "components": [
         {
@@ -250,13 +284,13 @@
       "typeParameters": null
     },
     {
-      "typeId": 20,
+      "typeId": 21,
       "type": "u64",
       "components": null,
       "typeParameters": null
     },
     {
-      "typeId": 21,
+      "typeId": 22,
       "type": "u8",
       "components": null,
       "typeParameters": null
@@ -278,7 +312,7 @@
         "typeArguments": [
           {
             "name": "",
-            "type": 21,
+            "type": 22,
             "typeArguments": null
           }
         ]
@@ -481,7 +515,7 @@
         "typeArguments": [
           {
             "name": "",
-            "type": 19,
+            "type": 20,
             "typeArguments": null
           }
         ]
@@ -666,7 +700,7 @@
         "typeArguments": [
           {
             "name": "",
-            "type": 19,
+            "type": 20,
             "typeArguments": null
           }
         ]
@@ -841,7 +875,7 @@
       "name": "total_assets",
       "output": {
         "name": "",
-        "type": 20,
+        "type": 21,
         "typeArguments": null
       },
       "attributes": [
@@ -994,7 +1028,7 @@
         "typeArguments": [
           {
             "name": "",
-            "type": 20,
+            "type": 21,
             "typeArguments": null
           }
         ]
@@ -1162,12 +1196,12 @@
       "inputs": [
         {
           "name": "sub_id",
-          "type": 1,
+          "type": 2,
           "typeArguments": null
         },
         {
           "name": "amount",
-          "type": 20,
+          "type": 21,
           "typeArguments": null
         }
       ],
@@ -1422,12 +1456,12 @@
         },
         {
           "name": "sub_id",
-          "type": 1,
+          "type": 2,
           "typeArguments": null
         },
         {
           "name": "amount",
-          "type": 20,
+          "type": 21,
           "typeArguments": null
         }
       ],
@@ -1821,7 +1855,7 @@
         },
         {
           "name": "decimals",
-          "type": 21,
+          "type": 22,
           "typeArguments": null
         }
       ],
@@ -2035,7 +2069,7 @@
         },
         {
           "name": "name",
-          "type": 19,
+          "type": 20,
           "typeArguments": null
         }
       ],
@@ -2255,7 +2289,7 @@
         },
         {
           "name": "symbol",
-          "type": 19,
+          "type": 20,
           "typeArguments": null
         }
       ],
@@ -2676,20 +2710,49 @@
           "name": "asset",
           "type": 14,
           "typeArguments": null
+        }
+      ],
+      "name": "get_asset_attributes",
+      "output": {
+        "name": "",
+        "type": 8,
+        "typeArguments": [
+          {
+            "name": "",
+            "type": 1,
+            "typeArguments": null
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "storage",
+          "arguments": [
+            "read"
+          ]
+        }
+      ]
+    },
+    {
+      "inputs": [
+        {
+          "name": "asset",
+          "type": 14,
+          "typeArguments": null
         },
         {
           "name": "name",
-          "type": 19,
+          "type": 20,
           "typeArguments": null
         },
         {
           "name": "symbol",
-          "type": 19,
+          "type": 20,
           "typeArguments": null
         },
         {
           "name": "decimals",
-          "type": 21,
+          "type": 22,
           "typeArguments": null
         }
       ],
@@ -2723,14 +2786,6 @@
       "loggedType": {
         "name": "",
         "type": 4,
-        "typeArguments": []
-      }
-    },
-    {
-      "logId": "4571204900286667806",
-      "loggedType": {
-        "name": "",
-        "type": 2,
         "typeArguments": []
       }
     },
@@ -2773,10 +2828,10 @@
       "name": "MAX_SUPPLY",
       "configurableType": {
         "name": "",
-        "type": 20,
+        "type": 21,
         "typeArguments": null
       },
-      "offset": 32640
+      "offset": 32672
     }
   ]
 }

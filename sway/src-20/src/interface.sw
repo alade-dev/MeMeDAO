@@ -1,7 +1,6 @@
 library;
 
 use std::option::Option;
-use ::data_structure::{AssetDetails, TokenProjects, TokenCategory};
 use std::{hash::Hash, storage::storage_string::*, string::String,};
 
 abi Constructor {
