@@ -18,6 +18,8 @@ import {
   useWallet,
 } from "@fuels/react";
 
+import { getTokenContract, setToken } from "../../contractAPI";
+
 const Hero = () => {
   const { connect, isConnecting } = useConnectUI();
   const { isConnected } = useIsConnected();
