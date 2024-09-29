@@ -21,7 +21,7 @@
 - [Threshold & DAO Initialization](#threshold--dao-initialization)
 - [Governance](#governance)
 - [Getting Started](#getting-started)
-- [Roadmap](#roadmap)
+- [Usage](#usage)
 
 ---
 
