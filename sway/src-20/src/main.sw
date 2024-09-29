@@ -542,13 +542,4 @@ impl Set_attributes for Contract {
         _set_symbol(storage.symbol, asset, symbol);
         _set_decimals(storage.decimals, asset, decimals);
     }
-
-    #[storage(read)]
-    fn get_asset_attributes(asset: AssetId) -> Option<(Option<StorageString>, Option<StorageString>, Option<u8>)> {
-        let name = storage.name.get(asset).try_read();
-        let symbol = storage.symbol.get(asset).try_read();
-        let decimals = storage.decimals.get(asset).try_read();
-
-        Some((name, symbol, decimals))
-    }
 }

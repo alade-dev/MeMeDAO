@@ -18,7 +18,10 @@ const tokens = [
         createdBy: "Scholes Doge",
         marketCap: "6.2k",
         status: "Live",
-        projectStatus: "Live project"
+        projectStatus: "Live project",
+        assetId: '',
+        contractId: '',
+        owner: ''
       },
       {
         name: "MemeToken",

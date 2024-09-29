@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { backarrow, mark } from "../../assets/icons";
 import { giphy2, giphy3, giphy4 } from "../../assets/gif/index";
 import "./CreateToken.css";
-import { deployTokenContract } from "../../contractAPI";
+import { setToken, deployDaoContract, getTokenContract } from "../../contractAPI";
 import { useWallet } from "@fuels/react";
 import { motion } from "framer-motion";
 
@@ -29,8 +29,10 @@ const CreateToken = () => {
 
   const createToken = async (e) => {
     e.preventDefault();
-    // console.log(formData);
-    await deployTokenContract(wallet);
+    console.log(formData);
+    const contract = getTokenContract(wallet)
+    const assetId = await setToken(contract, formData);
+    await deployDaoContract(wallet, assetId)
   };
 
   useEffect(() => {

@@ -12,7 +12,4 @@ abi Constructor {
 abi Set_attributes {
     #[storage(write)]
     fn set_asset_attributes(asset: AssetId, name: String, symbol: String, decimals: u8);
-
-    #[storage(read)]
-    fn get_asset_attributes(asset: AssetId) -> Option<(Option<StorageString>, Option<StorageString>, Option<u8>)>;
 }
