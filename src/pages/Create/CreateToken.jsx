@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { backarrow, mark } from "../../assets/icons";
 import { giphy2, giphy3, giphy4 } from "../../assets/gif/index";
 import "./CreateToken.css";
+import { deployTokenContract } from "../../contractAPI";
+import { useWallet } from "@fuels/react";
 
 const CreateToken = () => {
   const memeImages = [giphy2, giphy3, giphy4];
@@ -13,6 +15,20 @@ const CreateToken = () => {
   ];
 
   const [currentRotation, setCurrentRotation] = useState(0);
+  const { wallet } = useWallet();
+  const [formData, setFormData] = useState({
+    name: "",
+    ticker: "",
+    description: "",
+    createdBy: "",
+    image: null,
+  });
+
+  const createToken = async (e) => {
+    e.preventDefault(); 
+    console.log(formData);
+    await deployTokenContract(wallet)
+  };
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -22,8 +38,16 @@ const CreateToken = () => {
     return () => clearInterval(interval);
   }, []);
 
+  const handleChange = (e) => {
+    const { name, value, files } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: files ? files[0] : value, // Handle file input separately
+    }));
+  };
+
   return (
-    <div className="min-h-screen   mx-auto flex justify-center lg:pt-25 px-10 pt-20  bg-gray-900">
+    <div className="min-h-screen mx-auto flex justify-center lg:pt-25 px-10 pt-20 bg-gray-900">
       <div className="container lg:max-w-7xl max-w-1xl mx-auto lg:px-4">
         <div className="flex mb-4 justify-between items-center">
           <Link to="/">
@@ -44,7 +68,7 @@ const CreateToken = () => {
 
         <div className="flex flex-col lg:flex-row items-start pt-12 lg:space-x-12">
           <div className="bg-gradient-to-r from-gray-300/20 to-gray-800/30 border border-fuchsia-300/20 p-8 rounded-lg shadow-lg w-full lg:w-1/2 mb-6 lg:mb-0">
-            <form className="space-y-4">
+            <form className="space-y-4" onSubmit={createToken}>
               <div>
                 <label className="block text-sm text-gray-300">
                   Name<span className="text-red-700">*</span>
@@ -52,6 +76,9 @@ const CreateToken = () => {
                 <input
                   required
                   type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
                   className="w-full px-4 py-2 rounded-lg bg-[#2A2A2A] text-white border border-gray-600"
                   placeholder="Enter token name"
                 />
@@ -62,6 +89,9 @@ const CreateToken = () => {
                 </label>
                 <input
                   type="text"
+                  name="ticker"
+                  value={formData.ticker}
+                  onChange={handleChange}
                   required
                   className="w-full px-4 py-2 rounded-lg bg-[#2A2A2A] text-white border border-gray-600"
                   placeholder="Enter ticker"
@@ -72,6 +102,9 @@ const CreateToken = () => {
                   Description<span className="text-red-700">*</span>
                 </label>
                 <textarea
+                  name="description"
+                  value={formData.description}
+                  onChange={handleChange}
                   className="w-full px-4 py-2 rounded-lg bg-[#2A2A2A] text-white border border-gray-600"
                   rows="4"
                   required
@@ -84,6 +117,9 @@ const CreateToken = () => {
                 </label>
                 <input
                   type="text"
+                  name="createdBy"
+                  value={formData.createdBy}
+                  onChange={handleChange}
                   required
                   className="w-full px-4 py-2 rounded-lg bg-[#2A2A2A] text-white border border-gray-600"
                   placeholder="Creator name"
@@ -95,12 +131,17 @@ const CreateToken = () => {
                 </label>
                 <input
                   type="file"
+                  name="image"
                   accept="image/*.GIF,.gif"
+                  onChange={handleChange}
                   className="w-full px-4 py-2 rounded-lg bg-[#2A2A2A] text-white border border-gray-600"
                 />
               </div>
               <div className="flex justify-end">
-                <button className="bg-[#4782E0] text-white text-md px-6 py-3 rounded-lg flex items-center space-x-2 hover:bg-blue-600">
+                <button
+                  type="submit"
+                  className="bg-[#4782E0] text-white text-md px-6 py-3 rounded-lg flex items-center space-x-2 hover:bg-blue-600"
+                >
                   <span>Create Now</span>
                   <img
                     src={mark}
