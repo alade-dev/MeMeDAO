@@ -77,7 +77,6 @@ impl Memetro for Contract {
     #[payable]
     #[storage(read, write)]
     fn buy() {
-        require(storage.state.read() == State::NotInitialized, InitializationError::ContractNotInitialized);
         require(storage.meme_coin_asset.read() == msg_asset_id(), UserError::IncorrectAssetSent);
         require(msg_amount() > 0, UserError::AmountCannotBeZero);
 
