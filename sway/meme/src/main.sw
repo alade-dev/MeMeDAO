@@ -76,7 +76,9 @@ impl Memetro for Contract {
     /// Buy function: Allows users to buy meme coins before DAO initialization
     #[payable]
     #[storage(read, write)]
-    fn buy() {
+    fn buy(meme_coin_asset: AssetId) {
+        storage.meme_coin_asset.write(meme_coin_asset);
+        
         require(storage.meme_coin_asset.read() == msg_asset_id(), UserError::IncorrectAssetSent);
         require(msg_amount() > 0, UserError::AmountCannotBeZero);
 
