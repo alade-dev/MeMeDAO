@@ -37,7 +37,7 @@ abi Memetro {
 
     /// Buy meme tokens before DAO initialization.
     #[payable, storage(read, write)]
-    fn buy();
+    fn buy(meme_coin_asset: AssetId);
     
     /// Sell meme tokens before DAO initialization.
     #[storage(read, write)]
