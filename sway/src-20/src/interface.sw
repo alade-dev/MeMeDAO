@@ -13,3 +13,8 @@ abi Set_attributes {
     #[storage(write)]
     fn set_asset_attributes(asset: AssetId, name: String, symbol: String, decimals: u8);
 }
+
+abi Info {
+    #[storage(read)]
+    fn get_asset_attributes(asset_id: AssetId) -> Option<(StorageString, StorageString, u8)>;
+}

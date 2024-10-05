@@ -28,7 +28,7 @@ use sway_libs::{
         initialize_ownership,
     },
 };
-use interface::{Constructor, Set_attributes,};
+use interface::{Constructor, Set_attributes, Info};
 use std::{context::msg_amount, hash::Hash, storage::storage_string::*, string::String,};
 
 storage {
@@ -541,5 +541,22 @@ impl Set_attributes for Contract {
         _set_name(storage.name, asset, name);
         _set_symbol(storage.symbol, asset, symbol);
         _set_decimals(storage.decimals, asset, decimals);
+    }
+}
+
+
+impl Info for Contract {
+    /// Function to get asset attributes
+    #[storage(read)]
+    fn get_asset_attributes(asset_id: AssetId) -> Option<(StorageString, StorageString, u8)> {
+        let asset_name = storage.name.get(asset_id).try_read();
+        let asset_symbol = storage.symbol.get(asset_id).try_read();
+        let asset_decimals = storage.decimals.get(asset_id).try_read();
+
+        if let (Some(name), Some(symbol), Some(decimals)) = (asset_name, asset_symbol, asset_decimals) {
+            Some((name, symbol, decimals))
+        } else {
+            None
+        }
     }
 }
