@@ -33,3 +33,8 @@ dependencies = [
     "standards",
     "std",
 ]
+
+[[package]]
+name = "token_factory"
+source = "member"
+dependencies = ["std"]
