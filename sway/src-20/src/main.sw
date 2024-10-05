@@ -548,13 +548,13 @@ impl Set_attributes for Contract {
 impl Info for Contract {
     /// Function to get asset attributes
     #[storage(read)]
-    fn get_asset_attributes(asset_id: AssetId) -> Option<(StorageString, StorageString, u8)> {
-        let asset_name = storage.name.get(asset_id).try_read();
-        let asset_symbol = storage.symbol.get(asset_id).try_read();
+    fn get_asset_attributes(asset_id: AssetId) -> Option<(String, String, u8)> {
+        let asset_name = storage.name.get(asset_id).read_slice();
+        let asset_symbol = storage.symbol.get(asset_id).read_slice();
         let asset_decimals = storage.decimals.get(asset_id).try_read();
 
         if let (Some(name), Some(symbol), Some(decimals)) = (asset_name, asset_symbol, asset_decimals) {
-            Some((name, symbol, decimals))
+            Some((String::from(name), String::from(symbol), decimals))
         } else {
             None
         }

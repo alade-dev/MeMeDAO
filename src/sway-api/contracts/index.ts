@@ -14,3 +14,5 @@ export { Memetro } from './Memetro';
 export { MemetroFactory } from './MemetroFactory';
 export { Src20 } from './Src20';
 export { Src20Factory } from './Src20Factory';
+export { TokenFactory } from './TokenFactory';
+export { TokenFactoryFactory } from './TokenFactoryFactory';

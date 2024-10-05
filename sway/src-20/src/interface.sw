@@ -16,5 +16,5 @@ abi Set_attributes {
 
 abi Info {
     #[storage(read)]
-    fn get_asset_attributes(asset_id: AssetId) -> Option<(StorageString, StorageString, u8)>;
+    fn get_asset_attributes(asset_id: AssetId) -> Option<(String, String, u8)>;
 }

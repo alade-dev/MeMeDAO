@@ -509,7 +509,12 @@ const abi = {
   ],
   "functions": [
     {
-      "inputs": [],
+      "inputs": [
+        {
+          "name": "meme_coin_asset",
+          "concreteTypeId": "c0710b6731b1dd59799cf6bef33eee3b3b04a2e40e80a0724090215bbf2ca974"
+        }
+      ],
       "name": "buy",
       "output": "2e38e77b22c314a449e91fafed92a43826ac6aa403ae6a8acb6cf58239fbaf5d",
       "attributes": [
@@ -805,16 +810,16 @@ const abi = {
   ],
   "loggedTypes": [
     {
-      "logId": "4213608315170431462",
-      "concreteTypeId": "3a79be70205da1e6216e46787dcf4881c5d854117ca070fca61ac0387151ffbf"
-    },
-    {
       "logId": "8742946235045228304",
       "concreteTypeId": "79552f475635af10ed8c2161c079f2b9b3bbfa38e29b3a584378d0c73d07685b"
     },
     {
       "logId": "5709232100122337181",
       "concreteTypeId": "4f3b4458a40c9f9d4d2b1e9047cc150f92a8b3fd3dc76598ffbc8cded0522445"
+    },
+    {
+      "logId": "4213608315170431462",
+      "concreteTypeId": "3a79be70205da1e6216e46787dcf4881c5d854117ca070fca61ac0387151ffbf"
     },
     {
       "logId": "10485970385165293146",
@@ -910,7 +915,7 @@ export class Memetro extends Contract {
 
   declare interface: MemetroInterface;
   declare functions: {
-    buy: InvokeFunction<[], void>;
+    buy: InvokeFunction<[meme_coin_asset: AssetIdInput], void>;
     constructor: InvokeFunction<[meme_coin_asset: AssetIdInput], void>;
     create_proposal: InvokeFunction<[acceptance_percentage: BigNumberish, duration: BigNumberish, proposal_transaction: ProposalInput], void>;
     deposit: InvokeFunction<[], void>;

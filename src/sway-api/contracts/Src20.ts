@@ -64,38 +64,51 @@ const abi = {
       "concreteTypeId": "2e38e77b22c314a449e91fafed92a43826ac6aa403ae6a8acb6cf58239fbaf5d"
     },
     {
+      "type": "(struct std::string::String, struct std::string::String, u8)",
+      "concreteTypeId": "b170186c5613152f0fa4916d4c26e68fa5fe5643809cd4622859d2a650278cac",
+      "metadataTypeId": 0
+    },
+    {
       "type": "b256",
       "concreteTypeId": "7c5ee1cecf5f8eacd1284feb5f0bf2bdea533a51e2f0c9aabe9236d335989f3b"
     },
     {
       "type": "enum errors::AmountError",
       "concreteTypeId": "399efd608288a289f433bb43b203272d97842d825320004616c571c3f2e04082",
-      "metadataTypeId": 0
+      "metadataTypeId": 1
     },
     {
       "type": "enum errors::MintError",
       "concreteTypeId": "ee89c439b5472cab716006d7c677d16e15301e6c82cfce12cebfa57919f537de",
-      "metadataTypeId": 1
+      "metadataTypeId": 2
     },
     {
       "type": "enum errors::SetError",
       "concreteTypeId": "bf6597cf3d56a5e47a920520e275ccd481a27e7c988ea6af6f253170d5374c5a",
-      "metadataTypeId": 2
+      "metadataTypeId": 3
     },
     {
       "type": "enum standards::src5::State",
       "concreteTypeId": "192bc7098e2fe60635a9918afb563e4e5419d386da2bdbf0d716b4bc8549802c",
-      "metadataTypeId": 3
+      "metadataTypeId": 4
     },
     {
       "type": "enum std::identity::Identity",
       "concreteTypeId": "ab7cd04e05be58e3fc15d424c2c4a57f824a2a2d97d67252440a3925ebdc1335",
-      "metadataTypeId": 4
+      "metadataTypeId": 5
+    },
+    {
+      "type": "enum std::option::Option<(struct std::string::String, struct std::string::String, u8)>",
+      "concreteTypeId": "adeaa5bd68a28eb394b8693db007faf2ebee2af6cd1fed19a88d5add06c2be96",
+      "metadataTypeId": 6,
+      "typeArguments": [
+        "b170186c5613152f0fa4916d4c26e68fa5fe5643809cd4622859d2a650278cac"
+      ]
     },
     {
       "type": "enum std::option::Option<struct std::string::String>",
       "concreteTypeId": "7c06d929390a9aeeb8ffccf8173ac0d101a9976d99dda01cce74541a81e75ac0",
-      "metadataTypeId": 5,
+      "metadataTypeId": 6,
       "typeArguments": [
         "9a7f1d3e963c10e0a4ea70a8e20a4813d1dc5682e28f74cb102ae50d32f7f98c"
       ]
@@ -103,7 +116,7 @@ const abi = {
     {
       "type": "enum std::option::Option<u64>",
       "concreteTypeId": "d852149004cc9ec0bbe7dc4e37bffea1d41469b759512b6136f2e865a4c06e7d",
-      "metadataTypeId": 5,
+      "metadataTypeId": 6,
       "typeArguments": [
         "1506e6f44c1d6291cdf46395a8e573276a4fa79e8ace3fc891e092ef32d1b0a0"
       ]
@@ -111,7 +124,7 @@ const abi = {
     {
       "type": "enum std::option::Option<u8>",
       "concreteTypeId": "2da102c46c7263beeed95818cd7bee801716ba8303dddafdcd0f6c9efda4a0f1",
-      "metadataTypeId": 5,
+      "metadataTypeId": 6,
       "typeArguments": [
         "c89951a24c6ca28c13fd1cfdc646b2b656d69e61a92b91023be7eb58eb914b6b"
       ]
@@ -119,27 +132,27 @@ const abi = {
     {
       "type": "enum sway_libs::asset::errors::BurnError",
       "concreteTypeId": "3acdc2adac8e0589c5864525e0edc9dc61a9571a4d09c3c57b58ea76d33f4b46",
-      "metadataTypeId": 6
+      "metadataTypeId": 7
     },
     {
       "type": "enum sway_libs::ownership::errors::InitializationError",
       "concreteTypeId": "1dfe7feadc1d9667a4351761230f948744068a090fe91b1bc6763a90ed5d3893",
-      "metadataTypeId": 7
+      "metadataTypeId": 8
     },
     {
       "type": "struct std::asset_id::AssetId",
       "concreteTypeId": "c0710b6731b1dd59799cf6bef33eee3b3b04a2e40e80a0724090215bbf2ca974",
-      "metadataTypeId": 11
+      "metadataTypeId": 12
     },
     {
       "type": "struct std::string::String",
       "concreteTypeId": "9a7f1d3e963c10e0a4ea70a8e20a4813d1dc5682e28f74cb102ae50d32f7f98c",
-      "metadataTypeId": 15
+      "metadataTypeId": 16
     },
     {
       "type": "struct sway_libs::ownership::events::OwnershipSet",
       "concreteTypeId": "e1ef35033ea9d2956f17c3292dea4a46ce7d61fdf37bbebe03b7b965073f43b5",
-      "metadataTypeId": 16
+      "metadataTypeId": 17
     },
     {
       "type": "u64",
@@ -152,8 +165,26 @@ const abi = {
   ],
   "metadataTypes": [
     {
-      "type": "enum errors::AmountError",
+      "type": "(_, _, _)",
       "metadataTypeId": 0,
+      "components": [
+        {
+          "name": "__tuple_element",
+          "typeId": 16
+        },
+        {
+          "name": "__tuple_element",
+          "typeId": 16
+        },
+        {
+          "name": "__tuple_element",
+          "typeId": "c89951a24c6ca28c13fd1cfdc646b2b656d69e61a92b91023be7eb58eb914b6b"
+        }
+      ]
+    },
+    {
+      "type": "enum errors::AmountError",
+      "metadataTypeId": 1,
       "components": [
         {
           "name": "AmountMismatch",
@@ -163,7 +194,7 @@ const abi = {
     },
     {
       "type": "enum errors::MintError",
-      "metadataTypeId": 1,
+      "metadataTypeId": 2,
       "components": [
         {
           "name": "MaxMinted",
@@ -173,7 +204,7 @@ const abi = {
     },
     {
       "type": "enum errors::SetError",
-      "metadataTypeId": 2,
+      "metadataTypeId": 3,
       "components": [
         {
           "name": "ValueAlreadySet",
@@ -183,7 +214,7 @@ const abi = {
     },
     {
       "type": "enum standards::src5::State",
-      "metadataTypeId": 3,
+      "metadataTypeId": 4,
       "components": [
         {
           "name": "Uninitialized",
@@ -191,7 +222,7 @@ const abi = {
         },
         {
           "name": "Initialized",
-          "typeId": 4
+          "typeId": 5
         },
         {
           "name": "Revoked",
@@ -201,21 +232,21 @@ const abi = {
     },
     {
       "type": "enum std::identity::Identity",
-      "metadataTypeId": 4,
+      "metadataTypeId": 5,
       "components": [
         {
           "name": "Address",
-          "typeId": 10
+          "typeId": 11
         },
         {
           "name": "ContractId",
-          "typeId": 14
+          "typeId": 15
         }
       ]
     },
     {
       "type": "enum std::option::Option",
-      "metadataTypeId": 5,
+      "metadataTypeId": 6,
       "components": [
         {
           "name": "None",
@@ -223,16 +254,16 @@ const abi = {
         },
         {
           "name": "Some",
-          "typeId": 8
+          "typeId": 9
         }
       ],
       "typeParameters": [
-        8
+        9
       ]
     },
     {
       "type": "enum sway_libs::asset::errors::BurnError",
-      "metadataTypeId": 6,
+      "metadataTypeId": 7,
       "components": [
         {
           "name": "NotEnoughCoins",
@@ -242,7 +273,7 @@ const abi = {
     },
     {
       "type": "enum sway_libs::ownership::errors::InitializationError",
-      "metadataTypeId": 7,
+      "metadataTypeId": 8,
       "components": [
         {
           "name": "CannotReinitialized",
@@ -252,24 +283,14 @@ const abi = {
     },
     {
       "type": "generic T",
-      "metadataTypeId": 8
-    },
-    {
-      "type": "raw untyped ptr",
       "metadataTypeId": 9
     },
     {
-      "type": "struct std::address::Address",
-      "metadataTypeId": 10,
-      "components": [
-        {
-          "name": "bits",
-          "typeId": "7c5ee1cecf5f8eacd1284feb5f0bf2bdea533a51e2f0c9aabe9236d335989f3b"
-        }
-      ]
+      "type": "raw untyped ptr",
+      "metadataTypeId": 10
     },
     {
-      "type": "struct std::asset_id::AssetId",
+      "type": "struct std::address::Address",
       "metadataTypeId": 11,
       "components": [
         {
@@ -279,12 +300,22 @@ const abi = {
       ]
     },
     {
-      "type": "struct std::bytes::Bytes",
+      "type": "struct std::asset_id::AssetId",
       "metadataTypeId": 12,
       "components": [
         {
+          "name": "bits",
+          "typeId": "7c5ee1cecf5f8eacd1284feb5f0bf2bdea533a51e2f0c9aabe9236d335989f3b"
+        }
+      ]
+    },
+    {
+      "type": "struct std::bytes::Bytes",
+      "metadataTypeId": 13,
+      "components": [
+        {
           "name": "buf",
-          "typeId": 13
+          "typeId": 14
         },
         {
           "name": "len",
@@ -294,11 +325,11 @@ const abi = {
     },
     {
       "type": "struct std::bytes::RawBytes",
-      "metadataTypeId": 13,
+      "metadataTypeId": 14,
       "components": [
         {
           "name": "ptr",
-          "typeId": 9
+          "typeId": 10
         },
         {
           "name": "cap",
@@ -308,7 +339,7 @@ const abi = {
     },
     {
       "type": "struct std::contract_id::ContractId",
-      "metadataTypeId": 14,
+      "metadataTypeId": 15,
       "components": [
         {
           "name": "bits",
@@ -318,21 +349,21 @@ const abi = {
     },
     {
       "type": "struct std::string::String",
-      "metadataTypeId": 15,
+      "metadataTypeId": 16,
       "components": [
         {
           "name": "bytes",
-          "typeId": 12
+          "typeId": 13
         }
       ]
     },
     {
       "type": "struct sway_libs::ownership::events::OwnershipSet",
-      "metadataTypeId": 16,
+      "metadataTypeId": 17,
       "components": [
         {
           "name": "new_owner",
-          "typeId": 4
+          "typeId": 5
         }
       ]
     }
@@ -2686,6 +2717,30 @@ const abi = {
           ]
         }
       ]
+    },
+    {
+      "inputs": [
+        {
+          "name": "asset_id",
+          "concreteTypeId": "c0710b6731b1dd59799cf6bef33eee3b3b04a2e40e80a0724090215bbf2ca974"
+        }
+      ],
+      "name": "get_asset_attributes",
+      "output": "adeaa5bd68a28eb394b8693db007faf2ebee2af6cd1fed19a88d5add06c2be96",
+      "attributes": [
+        {
+          "name": "doc-comment",
+          "arguments": [
+            " Function to get asset attributes"
+          ]
+        },
+        {
+          "name": "storage",
+          "arguments": [
+            "read"
+          ]
+        }
+      ]
     }
   ],
   "loggedTypes": [
@@ -2719,7 +2774,7 @@ const abi = {
     {
       "name": "MAX_SUPPLY",
       "concreteTypeId": "1506e6f44c1d6291cdf46395a8e573276a4fa79e8ace3fc891e092ef32d1b0a0",
-      "offset": 34696
+      "offset": 36608
     }
   ]
 };
@@ -2750,6 +2805,7 @@ export class Src20Interface extends Interface {
     set_symbol: FunctionFragment;
     constructor: FunctionFragment;
     set_asset_attributes: FunctionFragment;
+    get_asset_attributes: FunctionFragment;
   };
 }
 
@@ -2772,6 +2828,7 @@ export class Src20 extends Contract {
     set_symbol: InvokeFunction<[asset: AssetIdInput, symbol: StdString], void>;
     constructor: InvokeFunction<[owner: IdentityInput], void>;
     set_asset_attributes: InvokeFunction<[asset: AssetIdInput, name: StdString, symbol: StdString, decimals: BigNumberish], void>;
+    get_asset_attributes: InvokeFunction<[asset_id: AssetIdInput], Option<[StdString, StdString, number]>>;
   };
 
   constructor(

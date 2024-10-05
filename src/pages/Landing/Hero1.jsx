@@ -14,8 +14,6 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { useConnectUI, useIsConnected, useWallet } from "@fuels/react";
 
-import { getTokenContract, setToken } from "../../contractAPI";
-
 const Hero = () => {
   const { connect, isConnecting } = useConnectUI();
   const { isConnected } = useIsConnected();
