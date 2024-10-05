@@ -3,7 +3,8 @@ import { createConfig } from 'fuels';
 export default createConfig({
   contracts: [
         'sway/meme',
-        'sway/src-20'
+        'sway/src-20',
+        'sway/token_factory'
   ],
   output: './src/sway-api',
 });
