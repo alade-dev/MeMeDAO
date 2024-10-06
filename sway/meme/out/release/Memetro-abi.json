@@ -433,7 +433,13 @@
   ],
   "functions": [
     {
-      "inputs": [],
+      "inputs": [
+        {
+          "name": "meme_coin_asset",
+          "type": 9,
+          "typeArguments": null
+        }
+      ],
       "name": "buy",
       "output": {
         "name": "",
@@ -804,14 +810,6 @@
   ],
   "loggedTypes": [
     {
-      "logId": "4213608315170431462",
-      "loggedType": {
-        "name": "",
-        "type": 5,
-        "typeArguments": []
-      }
-    },
-    {
       "logId": "8742946235045228304",
       "loggedType": {
         "name": "",
@@ -824,6 +822,14 @@
       "loggedType": {
         "name": "",
         "type": 18,
+        "typeArguments": []
+      }
+    },
+    {
+      "logId": "4213608315170431462",
+      "loggedType": {
+        "name": "",
+        "type": 5,
         "typeArguments": []
       }
     },

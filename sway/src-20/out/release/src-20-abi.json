@@ -13,36 +13,18 @@
       "components": [
         {
           "name": "__tuple_element",
-          "type": 8,
-          "typeArguments": [
-            {
-              "name": "",
-              "type": 19,
-              "typeArguments": null
-            }
-          ]
+          "type": 19,
+          "typeArguments": null
         },
         {
           "name": "__tuple_element",
-          "type": 8,
-          "typeArguments": [
-            {
-              "name": "",
-              "type": 19,
-              "typeArguments": null
-            }
-          ]
+          "type": 19,
+          "typeArguments": null
         },
         {
           "name": "__tuple_element",
-          "type": 8,
-          "typeArguments": [
-            {
-              "name": "",
-              "type": 22,
-              "typeArguments": null
-            }
-          ]
+          "type": 21,
+          "typeArguments": null
         }
       ],
       "typeParameters": null
@@ -218,7 +200,7 @@
         },
         {
           "name": "len",
-          "type": 21,
+          "type": 20,
           "typeArguments": null
         }
       ],
@@ -259,7 +241,7 @@
         },
         {
           "name": "cap",
-          "type": 21,
+          "type": 20,
           "typeArguments": null
         }
       ],
@@ -267,12 +249,6 @@
     },
     {
       "typeId": 19,
-      "type": "struct StorageString",
-      "components": [],
-      "typeParameters": null
-    },
-    {
-      "typeId": 20,
       "type": "struct String",
       "components": [
         {
@@ -284,13 +260,13 @@
       "typeParameters": null
     },
     {
-      "typeId": 21,
+      "typeId": 20,
       "type": "u64",
       "components": null,
       "typeParameters": null
     },
     {
-      "typeId": 22,
+      "typeId": 21,
       "type": "u8",
       "components": null,
       "typeParameters": null
@@ -312,7 +288,7 @@
         "typeArguments": [
           {
             "name": "",
-            "type": 22,
+            "type": 21,
             "typeArguments": null
           }
         ]
@@ -515,7 +491,7 @@
         "typeArguments": [
           {
             "name": "",
-            "type": 20,
+            "type": 19,
             "typeArguments": null
           }
         ]
@@ -700,7 +676,7 @@
         "typeArguments": [
           {
             "name": "",
-            "type": 20,
+            "type": 19,
             "typeArguments": null
           }
         ]
@@ -875,7 +851,7 @@
       "name": "total_assets",
       "output": {
         "name": "",
-        "type": 21,
+        "type": 20,
         "typeArguments": null
       },
       "attributes": [
@@ -1028,7 +1004,7 @@
         "typeArguments": [
           {
             "name": "",
-            "type": 21,
+            "type": 20,
             "typeArguments": null
           }
         ]
@@ -1201,7 +1177,7 @@
         },
         {
           "name": "amount",
-          "type": 21,
+          "type": 20,
           "typeArguments": null
         }
       ],
@@ -1461,7 +1437,7 @@
         },
         {
           "name": "amount",
-          "type": 21,
+          "type": 20,
           "typeArguments": null
         }
       ],
@@ -1855,7 +1831,7 @@
         },
         {
           "name": "decimals",
-          "type": 22,
+          "type": 21,
           "typeArguments": null
         }
       ],
@@ -2069,7 +2045,7 @@
         },
         {
           "name": "name",
-          "type": 20,
+          "type": 19,
           "typeArguments": null
         }
       ],
@@ -2289,7 +2265,7 @@
         },
         {
           "name": "symbol",
-          "type": 20,
+          "type": 19,
           "typeArguments": null
         }
       ],
@@ -2710,6 +2686,44 @@
           "name": "asset",
           "type": 14,
           "typeArguments": null
+        },
+        {
+          "name": "name",
+          "type": 19,
+          "typeArguments": null
+        },
+        {
+          "name": "symbol",
+          "type": 19,
+          "typeArguments": null
+        },
+        {
+          "name": "decimals",
+          "type": 21,
+          "typeArguments": null
+        }
+      ],
+      "name": "set_asset_attributes",
+      "output": {
+        "name": "",
+        "type": 0,
+        "typeArguments": null
+      },
+      "attributes": [
+        {
+          "name": "storage",
+          "arguments": [
+            "write"
+          ]
+        }
+      ]
+    },
+    {
+      "inputs": [
+        {
+          "name": "asset_id",
+          "type": 14,
+          "typeArguments": null
         }
       ],
       "name": "get_asset_attributes",
@@ -2726,47 +2740,15 @@
       },
       "attributes": [
         {
+          "name": "doc-comment",
+          "arguments": [
+            " Function to get asset attributes"
+          ]
+        },
+        {
           "name": "storage",
           "arguments": [
             "read"
-          ]
-        }
-      ]
-    },
-    {
-      "inputs": [
-        {
-          "name": "asset",
-          "type": 14,
-          "typeArguments": null
-        },
-        {
-          "name": "name",
-          "type": 20,
-          "typeArguments": null
-        },
-        {
-          "name": "symbol",
-          "type": 20,
-          "typeArguments": null
-        },
-        {
-          "name": "decimals",
-          "type": 22,
-          "typeArguments": null
-        }
-      ],
-      "name": "set_asset_attributes",
-      "output": {
-        "name": "",
-        "type": 0,
-        "typeArguments": null
-      },
-      "attributes": [
-        {
-          "name": "storage",
-          "arguments": [
-            "write"
           ]
         }
       ]
@@ -2828,10 +2810,10 @@
       "name": "MAX_SUPPLY",
       "configurableType": {
         "name": "",
-        "type": 21,
+        "type": 20,
         "typeArguments": null
       },
-      "offset": 32672
+      "offset": 32240
     }
   ]
 }
