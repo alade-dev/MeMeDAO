@@ -76,13 +76,6 @@ export async function buyToken(contractId, wallet, amount) {
       forward: [amount, baseAssetId],
     })
     .call();
-  await tokenContract.functions
-    .mint(
-      identityInput,
-      "0xcaadc5c961296450832e1f151eed1da690f11ab9ea5241d8c8c788284ccc16d0",
-      bn(amount * 100000000)
-    )
-    .call();
 }
 
 export async function getTokens(wallet) {
@@ -105,8 +98,6 @@ export async function getTokens(wallet) {
       assertID: assetIdResponse.value[0],
       contractId: assetIdResponse.value[1],
     };
-    
-    console.log(tokenInfo)
     tokens.push(tokenInfo);
   }
 

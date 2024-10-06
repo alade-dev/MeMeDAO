@@ -4,6 +4,7 @@ import { LineChart, Line, XAxis, YAxis, ResponsiveContainer } from "recharts";
 import { backarrow, fuel } from "../../assets/icons";
 import { giphy2 } from "../../assets/gif";
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
 
 const data = [
   { time: "10:00", price: 1.256 },
@@ -30,6 +31,13 @@ const Token = () => {
     // },
   ]);
   const [newComment, setNewComment] = useState("");
+  const location = useLocation();
+  const { token } = location.state || {};
+  console.log(location)
+
+  if (!token) {
+    return <div>No Token Details Available</div>; // Handle case where token data is missing
+  }
 
   const handleCommentSubmit = (e) => {
     e.preventDefault();
