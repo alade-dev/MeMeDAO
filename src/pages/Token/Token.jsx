@@ -2,7 +2,7 @@ import { TrendingUp, TrendingDown } from "lucide-react";
 import { Link } from "react-router-dom";
 import { LineChart, Line, XAxis, YAxis, ResponsiveContainer } from "recharts";
 import { backarrow, fuel } from "../../assets/icons";
-import { giphy2 } from "../../assets/gif";
+// import { giphy2 } from "../../assets/gif";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 
@@ -141,13 +141,13 @@ const Token = () => {
                 <h2 className="text-2xl font-bold mb-4">
                   Project {tokenDetails.name}{" "}
                 </h2>
-                <div className="bg-transparent  p-6  w-full max-w-lg text-center lg:text-left ">
+                <div className="bg-transparent  p-4  w-full max-w-lg text-center lg:text-left ">
                   <div className="flex items-center space-x-4">
                     {/* Meme image */}
                     <img
-                      src={giphy2}
+                      src={tokenDetails.image}
                       alt="Meme"
-                      className="h-fit w-[160px] rounded-xl object-cover"
+                      className="h-[140px] w-[160px] rounded-xl object-cover"
                     />
 
                     {/* Meme details */}

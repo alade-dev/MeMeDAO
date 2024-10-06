@@ -78,12 +78,35 @@ const Hero = () => {
     navigate(`/token/${token.name}`, { state: { tokenData: token } });
   };
 
-  // Render trends content based on loading state
   const renderTrendsContent = () => {
+    if (!isConnected) {
+      return (
+        <div className="flex flex-col items-center justify-center h-[200px] w-full">
+          <div className="text-lg text-gray-400 mb-4">Connect your wallet to view trending tokens</div>
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            className="bg-[#4782E0] transition-colors duration-200 text-white px-7 py-3 rounded-md hover:bg-[#5892f0] flex items-center space-x-2"
+            onClick={handleConnect}
+          >
+            <span>Connect Wallet</span>
+            <img src={wallet1} alt="wallet" className="w-5 h-5 object-contain" />
+          </motion.button>
+        </div>
+      );
+    }
+
     if (tokens.loading) {
       return (
         <div className="flex items-center justify-center h-[200px] w-full">
           <div className="animate-pulse text-lg text-blue-400">Loading trending tokens...</div>
+        </div>
+      );
+    }
+
+    if (tokens.error) {
+      return (
+        <div className="flex items-center justify-center h-[200px] w-full">
+          <div className="text-red-400">Error loading tokens. Please try again later.</div>
         </div>
       );
     }
@@ -148,7 +171,7 @@ const Hero = () => {
               onClick={handleConnect}
             >
               {isConnecting ? "Connecting..." : 
-               isConnected ? `${wallet?.address.toAddress().slice(0, 8)}...${wallet?.address.toAddress().slice(-5)}` : 
+               isConnected ?  `${wallet?.address.toAddress().slice(0, 8) || "loading" }...${wallet?.address.toAddress().slice(-5) || "loading" }` : 
                "Connect Wallet"}
               <img src={wallet1} alt="wallet" className="w-5 h-5 object-contain" />
             </motion.button>
