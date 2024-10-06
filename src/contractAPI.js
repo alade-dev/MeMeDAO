@@ -1,13 +1,18 @@
-import { Src20, Memetro, MemetroFactory } from "./sway-api";
+import { Src20, Memetro, MemetroFactory, TokenFactory } from "./sway-api";
 import { getRandomB256 } from "fuels";
 import { createAssetId } from "./utils/assetId";
 import { bn } from "fuels";
 
-const contractId = "0x5b2d725584d9d22489a525fc432bae17137e2740e67241dadc5998636ae9e7f6";
-//const contractId = '0xeb4c62a8a0068f2a9686d024e883c67f6cac19a389aef3946fd612d9beb7021b';
+const contractId = "0x919980b4435b9320c63577c7ccde21a2af18f0bf5d7c30c833aed7a07f9485b4";
+const tokenFactoryId = "0x7358a08726de4dfa936c81a1993f56acc1b7e5fb6934245da2eb87054ec569bf"
 
 export function getTokenContract(wallet) {
-  const testContract = new Src20(contractId, wallet);
+  const tokenContract = new Src20(contractId, wallet);
+  return tokenContract;
+}
+
+export function getTokenFactoryContract(wallet) {
+  const testContract = new TokenFactory(tokenFactoryId, wallet);
   return testContract;
 }
 
