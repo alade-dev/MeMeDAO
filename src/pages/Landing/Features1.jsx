@@ -115,7 +115,10 @@ const Feature = () => {
               className="grid grid-cols-[2fr,1fr,1fr,1fr,1fr] gap-4 items-center bg-gray-800/30 rounded-lg p-4 mb-4"
             >
               <Link
-                to={`/token/${token.name}`}
+                to={{
+                  pathname: `/token/${token.name}`,
+                  state: { token }
+                }}
                 className="flex items-center space-x-4"
               >
                 <div className="relative w-full sm:w-auto">
@@ -141,7 +144,10 @@ const Feature = () => {
                 {token.status}
               </p>
               <Link
-                to={`/token/${token.name}`}
+                to={{
+                  pathname: `/token/${token.name}`,
+                  state: { token }
+                }}
                 className="flex items-center space-x-4"
               >
                 <button className="bg-blue-500 text-white py-4 px-4 rounded-md font-semibold hover:bg-blue-600 transition-colors flex items-center justify-center space-x-2">
