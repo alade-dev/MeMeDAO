@@ -13,6 +13,7 @@ import RotatingMemes from "../../components/RotatingMemes";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { useConnectUI, useIsConnected, useWallet } from "@fuels/react";
+import { getTokens } from "../../contractAPI";
 
 const Hero = () => {
   const { connect, isConnecting } = useConnectUI();
@@ -23,6 +24,7 @@ const Hero = () => {
   useEffect(() => {
     if (wallet) {
       setLoading(false);
+      getTokens(wallet);
     }
   }, [wallet]);
   const handleConnect = () => {

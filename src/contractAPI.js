@@ -1,10 +1,10 @@
 import { Src20, Memetro, MemetroFactory, TokenFactory } from "./sway-api";
 import { getRandomB256 } from "fuels";
 import { createAssetId } from "./utils/assetId";
-import { bn } from "fuels";
+import { bn, hexlify } from "fuels";
 
-const contractId = "0x919980b4435b9320c63577c7ccde21a2af18f0bf5d7c30c833aed7a07f9485b4";
-const tokenFactoryId = "0x7358a08726de4dfa936c81a1993f56acc1b7e5fb6934245da2eb87054ec569bf"
+const contractId = "0x44c4813dc4f64a1dda8dc286bab9a05674328d32bf47191aaa92c850387a48ed";
+const tokenFactoryId = "0x52d798e161ddff6856fa832491e55cd4e0ce64910130c5bdbbda98049530492b"
 
 export function getTokenContract(wallet) {
   const tokenContract = new Src20(contractId, wallet);
@@ -24,6 +24,7 @@ export function getDaoContract(contractId, wallet) {
 export async function deployDaoContract(wallet, assetId) {
   // Initialize the contract factory
   const factory = new MemetroFactory(wallet);
+  const factoryContract = getTokenFactoryContract(wallet);
 
   // Deploy the contract
   const { waitForResult, contractId, waitForTransactionId } =
@@ -34,8 +35,10 @@ export async function deployDaoContract(wallet, assetId) {
 
   // Await its deployment
   const { contract, transactionResult } = await waitForResult();
-  console.log(contract, contractId, transactionId, transactionResult);
+  console.log(contract, contractId, transactionId);
   await contract.functions.constructor(assetId).call();
+  const hexId = hexlify(contractId)
+  await factoryContract.functions.add_asset_ids(assetId, hexId).call();
 }
 
 export async function setToken(contract, formData) {
@@ -74,8 +77,21 @@ export async function buyToken(contractId, wallet, amount) {
 
 }
 
-export async function getTokens() {
-  const tokenContract = getTokenContract();
-  const factoryContract = getTokenFactoryContract();
-  const tokens = await tokenContract.functions.total_assets.get();
+
+export async function getTokens(wallet) {
+  const factoryContract = getTokenFactoryContract(wallet);
+  const tokenContract = getTokenContract(wallet);
+  const totalTokens = await factoryContract.functions.total_asset_pairs().get();
+  const tokens = [];
+
+  for (let i = 0; i < totalTokens.value.toNumber(); i++) {
+    const assetIdResponse = await factoryContract.functions.get_asset_ids(i).get();
+    tokens.push(assetIdResponse);
+  }
+
+  console.log(tokens)
+  const token_att = await tokenContract.functions.get_asset_attributes(tokens[0].value[0]).get();
+  console.log(token_att)
+
+  return tokens;
 }

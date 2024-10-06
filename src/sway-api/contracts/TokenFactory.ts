@@ -37,11 +37,20 @@ const abi = {
       "concreteTypeId": "2e38e77b22c314a449e91fafed92a43826ac6aa403ae6a8acb6cf58239fbaf5d"
     },
     {
-      "type": "enum std::option::Option<struct std::asset_id::AssetId>",
-      "concreteTypeId": "191bf2140761b3c5ab6c43992d162bb3dc9d7f2272b2ee5f5eeea411ddedcd32",
+      "type": "(struct std::asset_id::AssetId, b256)",
+      "concreteTypeId": "68233d63434e3cbb84e8900a3e0c2ec844c31f63105e8f2fddaa770d562540c8",
+      "metadataTypeId": 0
+    },
+    {
+      "type": "b256",
+      "concreteTypeId": "7c5ee1cecf5f8eacd1284feb5f0bf2bdea533a51e2f0c9aabe9236d335989f3b"
+    },
+    {
+      "type": "enum std::option::Option<(struct std::asset_id::AssetId, b256)>",
+      "concreteTypeId": "0e5e99edfb8781b10ad41b37f6e27f5926d6542ed54aa98986c0515020051b3e",
       "metadataTypeId": 1,
       "typeArguments": [
-        "c0710b6731b1dd59799cf6bef33eee3b3b04a2e40e80a0724090215bbf2ca974"
+        "68233d63434e3cbb84e8900a3e0c2ec844c31f63105e8f2fddaa770d562540c8"
       ]
     },
     {
@@ -56,8 +65,18 @@ const abi = {
   ],
   "metadataTypes": [
     {
-      "type": "b256",
-      "metadataTypeId": 0
+      "type": "(_, _)",
+      "metadataTypeId": 0,
+      "components": [
+        {
+          "name": "__tuple_element",
+          "typeId": 3
+        },
+        {
+          "name": "__tuple_element",
+          "typeId": "7c5ee1cecf5f8eacd1284feb5f0bf2bdea533a51e2f0c9aabe9236d335989f3b"
+        }
+      ]
     },
     {
       "type": "enum std::option::Option",
@@ -86,7 +105,7 @@ const abi = {
       "components": [
         {
           "name": "bits",
-          "typeId": 0
+          "typeId": "7c5ee1cecf5f8eacd1284feb5f0bf2bdea533a51e2f0c9aabe9236d335989f3b"
         }
       ]
     }
@@ -95,11 +114,15 @@ const abi = {
     {
       "inputs": [
         {
-          "name": "asset_id",
+          "name": "asset_id1",
           "concreteTypeId": "c0710b6731b1dd59799cf6bef33eee3b3b04a2e40e80a0724090215bbf2ca974"
+        },
+        {
+          "name": "asset_id2",
+          "concreteTypeId": "7c5ee1cecf5f8eacd1284feb5f0bf2bdea533a51e2f0c9aabe9236d335989f3b"
         }
       ],
-      "name": "add_asset_id",
+      "name": "add_asset_ids",
       "output": "2e38e77b22c314a449e91fafed92a43826ac6aa403ae6a8acb6cf58239fbaf5d",
       "attributes": [
         {
@@ -117,8 +140,8 @@ const abi = {
           "concreteTypeId": "1506e6f44c1d6291cdf46395a8e573276a4fa79e8ace3fc891e092ef32d1b0a0"
         }
       ],
-      "name": "get_asset_id",
-      "output": "191bf2140761b3c5ab6c43992d162bb3dc9d7f2272b2ee5f5eeea411ddedcd32",
+      "name": "get_asset_ids",
+      "output": "0e5e99edfb8781b10ad41b37f6e27f5926d6542ed54aa98986c0515020051b3e",
       "attributes": [
         {
           "name": "storage",
@@ -130,7 +153,7 @@ const abi = {
     },
     {
       "inputs": [],
-      "name": "total_asset_ids",
+      "name": "total_asset_pairs",
       "output": "1506e6f44c1d6291cdf46395a8e573276a4fa79e8ace3fc891e092ef32d1b0a0",
       "attributes": [
         {
@@ -147,7 +170,12 @@ const abi = {
   "configurables": []
 };
 
-const storageSlots: StorageSlot[] = [];
+const storageSlots: StorageSlot[] = [
+  {
+    "key": "b60e1c6c4fb5a0a5d2856a248dfa6ab4501dae8f9e96b41c4080caf16bcf13bc",
+    "value": "0000000000000000000000000000000000000000000000000000000000000000"
+  }
+];
 
 export class TokenFactoryInterface extends Interface {
   constructor() {
@@ -155,9 +183,9 @@ export class TokenFactoryInterface extends Interface {
   }
 
   declare functions: {
-    add_asset_id: FunctionFragment;
-    get_asset_id: FunctionFragment;
-    total_asset_ids: FunctionFragment;
+    add_asset_ids: FunctionFragment;
+    get_asset_ids: FunctionFragment;
+    total_asset_pairs: FunctionFragment;
   };
 }
 
@@ -167,9 +195,9 @@ export class TokenFactory extends Contract {
 
   declare interface: TokenFactoryInterface;
   declare functions: {
-    add_asset_id: InvokeFunction<[asset_id: AssetIdInput], void>;
-    get_asset_id: InvokeFunction<[index: BigNumberish], Option<AssetIdOutput>>;
-    total_asset_ids: InvokeFunction<[], BN>;
+    add_asset_ids: InvokeFunction<[asset_id1: AssetIdInput, asset_id2: string], void>;
+    get_asset_ids: InvokeFunction<[index: BigNumberish], Option<[AssetIdOutput, string]>>;
+    total_asset_pairs: InvokeFunction<[], BN>;
   };
 
   constructor(
