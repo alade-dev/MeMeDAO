@@ -1,13 +1,18 @@
-import { Src20, Memetro, MemetroFactory } from "./sway-api";
+import { Src20, Memetro, MemetroFactory, TokenFactory } from "./sway-api";
 import { getRandomB256 } from "fuels";
 import { createAssetId } from "./utils/assetId";
-import { bn } from "fuels";
+import { bn, hexlify } from "fuels";
 
-const contractId = "0x5b2d725584d9d22489a525fc432bae17137e2740e67241dadc5998636ae9e7f6";
-//const contractId = '0xeb4c62a8a0068f2a9686d024e883c67f6cac19a389aef3946fd612d9beb7021b';
+const contractId = "0x44c4813dc4f64a1dda8dc286bab9a05674328d32bf47191aaa92c850387a48ed";
+const tokenFactoryId = "0x52d798e161ddff6856fa832491e55cd4e0ce64910130c5bdbbda98049530492b"
 
 export function getTokenContract(wallet) {
-  const testContract = new Src20(contractId, wallet);
+  const tokenContract = new Src20(contractId, wallet);
+  return tokenContract;
+}
+
+export function getTokenFactoryContract(wallet) {
+  const testContract = new TokenFactory(tokenFactoryId, wallet);
   return testContract;
 }
 
@@ -19,6 +24,7 @@ export function getDaoContract(contractId, wallet) {
 export async function deployDaoContract(wallet, assetId) {
   // Initialize the contract factory
   const factory = new MemetroFactory(wallet);
+  const factoryContract = getTokenFactoryContract(wallet);
 
   // Deploy the contract
   const { waitForResult, contractId, waitForTransactionId } =
@@ -29,8 +35,10 @@ export async function deployDaoContract(wallet, assetId) {
 
   // Await its deployment
   const { contract, transactionResult } = await waitForResult();
-  console.log(contract, contractId, transactionId, transactionResult);
+  console.log(contract, contractId, transactionId);
   await contract.functions.constructor(assetId).call();
+  const hexId = hexlify(contractId)
+  await factoryContract.functions.add_asset_ids(assetId, hexId).call();
 }
 
 export async function setToken(contract, formData) {
@@ -68,5 +76,22 @@ export async function buyToken(contractId, wallet, amount) {
     await tokenContract.functions.mint(identityInput, '0xcaadc5c961296450832e1f151eed1da690f11ab9ea5241d8c8c788284ccc16d0', bn(amount*100000000)).call()
 
 }
-//0x8dceb621baf9b06d6df8f7160e3c20b5ae2bf0b933920a92e78ee8a546939588 {bits: '0xae27e13c21cd096f7ff809af576fe9895338106f377b7032a435ae0916f447ca'} 0xbdd07a8f06b2191a2e9e670d94fc112a2ada7a3d38764954ed7891ed1a18c7dc' '0xad8879ed88e19382468d15c9d6dfc5e9c1697aa48de6094e459a820a14b1284a
-//0xcaadc5c961296450832e1f151eed1da690f11ab9ea5241d8c8c788284ccc16d0 {bits: '0xf399e5a19cb271c733db215f6d44328c6c58d76eabfb97ab243799442e2f4b1c'} 0x7e38cb145219c4b6ea97aa5647fa35351d183e045cb3386da374f57983a56dd3
+
+
+export async function getTokens(wallet) {
+  const factoryContract = getTokenFactoryContract(wallet);
+  const tokenContract = getTokenContract(wallet);
+  const totalTokens = await factoryContract.functions.total_asset_pairs().get();
+  const tokens = [];
+
+  for (let i = 0; i < totalTokens.value.toNumber(); i++) {
+    const assetIdResponse = await factoryContract.functions.get_asset_ids(i).get();
+    tokens.push(assetIdResponse);
+  }
+
+  console.log(tokens)
+  const token_att = await tokenContract.functions.get_asset_attributes(tokens[0].value[0]).get();
+  console.log(token_att)
+
+  return tokens;
+}

@@ -32,10 +32,10 @@ const CreateToken = () => {
   const createToken = async (e) => {
     e.preventDefault();
     console.log(formData);
-    // const contract = getTokenContract(wallet)
-    // const assetId = await setToken(contract, formData);
-    // await deployDaoContract(wallet, assetId)
-    await buyToken('0x7e38cb145219c4b6ea97aa5647fa35351d183e045cb3386da374f57983a56dd3', wallet, 0.0005);
+    const contract = getTokenContract(wallet)
+    const assetId = await setToken(contract, formData);
+    await deployDaoContract(wallet, assetId)
+    //await buyToken('0x7e38cb145219c4b6ea97aa5647fa35351d183e045cb3386da374f57983a56dd3', wallet, 0.0005);
   };
 
   useEffect(() => {

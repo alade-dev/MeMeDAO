@@ -6,7 +6,6 @@ abi TokenFactory {
 }
 
 abi Info {
-
     #[storage(read)]
     fn get_asset_ids(index: u64) -> Option<(AssetId, b256)>;
 
