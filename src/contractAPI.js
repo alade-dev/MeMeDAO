@@ -86,12 +86,9 @@ export async function getTokens(wallet) {
 
   for (let i = 0; i < totalTokens.value.toNumber(); i++) {
     const assetIdResponse = await factoryContract.functions.get_asset_ids(i).get();
-    tokens.push(assetIdResponse);
+    const token_att = await tokenContract.functions.get_asset_attributes(assetIdResponse.value[0]).get();
+    tokens.push([assetIdResponse.value, token_att.value]);
   }
-
   console.log(tokens)
-  const token_att = await tokenContract.functions.get_asset_attributes(tokens[0].value[0]).get();
-  console.log(token_att)
-
   return tokens;
 }
