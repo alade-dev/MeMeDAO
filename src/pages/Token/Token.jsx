@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { LineChart, Line, XAxis, YAxis, ResponsiveContainer } from "recharts";
 import { backarrow, fuel } from "../../assets/icons";
 import { giphy2 } from "../../assets/gif";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 
 const data = [
@@ -32,12 +32,8 @@ const Token = () => {
   ]);
   const [newComment, setNewComment] = useState("");
   const location = useLocation();
-  const { token } = location.state || {};
-  console.log(location)
-
-  if (!token) {
-    return <div>No Token Details Available</div>; // Handle case where token data is missing
-  }
+  const { tokenData } = location.state || {};
+  const [tokenDetails, setTokenDetails] = useState(null);
 
   const handleCommentSubmit = (e) => {
     e.preventDefault();
@@ -53,6 +49,16 @@ const Token = () => {
       setNewComment(""); // Clear the input after submission
     }
   };
+
+  useEffect(() => {
+    if (tokenData) {
+      setTokenDetails(tokenData);
+    }
+  }, [tokenData]);
+
+  if (!tokenDetails) {
+    return <div className="text-white text-center">Loading...</div>;
+  }
 
   return (
     <div className="bg-gray-900 text-white min-h-screen pt-10 p-4">
@@ -132,7 +138,9 @@ const Token = () => {
             </div>
             <div className="bg-[#2E2E35] rounded-lg p-3">
               <div className="bg-[#2A2A2A] rounded-lg p-4">
-                <h2 className="text-2xl font-bold mb-4">Project Funfti.meme</h2>
+                <h2 className="text-2xl font-bold mb-4">
+                  Project {tokenDetails.name}{" "}
+                </h2>
                 <div className="bg-transparent  p-6  w-full max-w-lg text-center lg:text-left ">
                   <div className="flex items-center space-x-4">
                     {/* Meme image */}
@@ -143,11 +151,11 @@ const Token = () => {
                     />
 
                     {/* Meme details */}
-                    <div className="text-left text-sm leading-6 ">
-                      <p>
+                    <div className="text-left   text-sm leading-6 ">
+                      <p className="text-[12px]">
                         Created by:{" "}
                         <span className="bg-gradient-to-r from-[#4782E0] to-fuchsia-300 bg-clip-text text-transparent">
-                          Toheeb
+                          {tokenDetails.createdBy}
                         </span>
                       </p>
                       <p>less than minutes ago</p>
@@ -170,7 +178,7 @@ const Token = () => {
                 </p>
                 <p className="text-sm">
                   There are 0 tokens still available for sale in the bonding
-                  curve and there is 0 SOL in the bonding curve.
+                  curve and there is 0 Fuel in the bonding curve.
                 </p>
               </div>
               <div className="mt-6">
@@ -215,10 +223,36 @@ const Token = () => {
 
 const BuySellSection = () => {
   const [selectedTrade, setSelectedTrade] = useState("Buy");
+  const location = useLocation();
+  const { tokenData } = location.state || {};
+  const [tokenDetails, setTokenDetails] = useState(null);
+
+  useEffect(() => {
+    if (tokenData) {
+      setTokenDetails(tokenData);
+    }
+  }, [tokenData]);
+
+  const handleTrade = async (e) => {
+    e.preventDefault();
+    try {
+      // you can use the tokenDetails.contractId or other data here my oga
+    
+      console.log("Trading token:", tokenDetails);
+  
+    } catch (error) {
+      console.error("Trading error:", error);
+    }
+  };
+  if (!tokenDetails) {
+    return <div className="text-white text-center">Loading...</div>;
+  }
 
   return (
     <>
-      <p className="text-2xl font-semibold mb-4">Trade Zylum via Meme...</p>
+      <p className="text-2xl font-semibold mb-4">
+        Trade {tokenDetails.name} via Meme...
+      </p>
 
       <div className="bg-gray-800 rounded-lg p-4 mb-6">
         <div className="flex ml-auto bg-[#D9D9D9]/10 rounded-md p-1 border mb-5 justify-evenly h-[50px] w-[180px] border-[#D9D9D9]/30 space-x-1">
@@ -238,7 +272,7 @@ const BuySellSection = () => {
         </div>
 
         <div className="flex justify-between">
-          <form className="w-full">
+          <form onSubmit={handleTrade} className="w-full">
             <div className="relative w-full md:inline-block bg-[#2d2d35] rounded-md px-4 py-2 border border-transparent hover:border-gray-500 focus-within:border-gray-500 transition-colors">
               <input
                 type="float"
@@ -254,7 +288,8 @@ const BuySellSection = () => {
             </div>
             <div className="flex justify-end">
               <button
-                className={`w-[40%] mb-10 px-4 py-3 rounded-md mt-4 text-white ${
+                type="submit"
+                className={`lg:w-[40%] w-full h-full mb-10 px-1 py-3 rounded-md mt-4 text-white ${
                   selectedTrade === "Buy"
                     ? "bg-green-600 hover:bg-green-700"
                     : "bg-red-600 hover:bg-red-700"

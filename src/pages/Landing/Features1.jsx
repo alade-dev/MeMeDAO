@@ -9,7 +9,7 @@ import {
 } from "../../assets/gif/index";
 // import tokens from "../../data";
 import { bag } from "../../assets/icons";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useWallet } from "@fuels/react";
 import { getTokens } from "../../contractAPI";
 
@@ -19,6 +19,7 @@ const Feature = () => {
   const [tokens, setTokens] = useState([]);
   const [loading, setLoading] = useState(true);
   const { wallet } = useWallet();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchTokens = async () => {
@@ -28,13 +29,14 @@ const Feature = () => {
           const newTokens = fetchedToken.map((token, index) => ({
             name: token.name,
             ticker: token.ticker,
-            txId: token.txId,
+            assertID: token.assertID,
+            contractId: token.contractId,
             image: [giphy2, giphy3, giphy4, giphy5, giphy6, giphy8][index],
             category: "Hot", // You can modify these default values
             duration: "1h", // based on your needs
             createdBy: "Anonymous", // or fetch from your contract
             marketCap: "calculating...", // or fetch from your contract
-            status: "Live" // or fetch from your contract
+            status: "Live", // or fetch from your contract
           }));
           setTokens(newTokens);
         }
@@ -51,13 +53,22 @@ const Feature = () => {
   // Filter tokens by selected category and duration
   const filteredTokens = tokens.filter(
     (token) =>
-      token.category === selectedCategory &&
-      token.duration === selectedDuration
+      token.category === selectedCategory && token.duration === selectedDuration
   );
 
   if (loading) {
-    return <div className="text-white text-center">Loading...</div>;
+    return (
+      <div className="flex items-center justify-center h-[200px] w-full">
+        <div className="animate-pulse text-lg text-blue-400">
+          Loading tokens...
+        </div>
+      </div>
+    );
   }
+
+  const handleTokenClick = (token) => {
+    navigate(`/token/${token.name}`, { state: { tokenData: token } });
+  };
 
   return (
     <div className="p-4 sm:p-6 bg-[#2A2A2A] text-white min-h-screen mx-auto max-w-screen-2xl">
@@ -114,13 +125,7 @@ const Feature = () => {
               key={index}
               className="grid grid-cols-[2fr,1fr,1fr,1fr,1fr] gap-4 items-center bg-gray-800/30 rounded-lg p-4 mb-4"
             >
-              <Link
-                to={{
-                  pathname: `/token/${token.name}`,
-                  state: { token }
-                }}
-                className="flex items-center space-x-4"
-              >
+              <div className="flex items-center space-x-4">
                 <div className="relative w-full sm:w-auto">
                   <img
                     src={token.image}
@@ -131,30 +136,24 @@ const Feature = () => {
                     <h3 className="text-lg font-bold">{token.name}</h3>
                   </div>
                 </div>
-              </Link>
+              </div>
               <p className="text-sm text-[#D9D9D9]">{token.createdBy}</p>
               <p className="text-sm text-[#D9D9D9]">{token.marketCap}</p>
               <p
                 className={`text-sm font-bold ${
-                  token.status === "Live"
-                    ? "text-green-500"
-                    : "text-[#D9D9D9]"
+                  token.status === "Live" ? "text-green-500" : "text-[#D9D9D9]"
                 }`}
               >
                 {token.status}
               </p>
-              <Link
-                to={{
-                  pathname: `/token/${token.name}`,
-                  state: { token }
-                }}
-                className="flex items-center space-x-4"
+
+              <button
+                onClick={() => handleTokenClick(token)}
+                className="bg-blue-500 text-white py-4 px-4 rounded-md font-semibold hover:bg-blue-600 transition-colors flex items-center justify-center space-x-2"
               >
-                <button className="bg-blue-500 text-white py-4 px-4 rounded-md font-semibold hover:bg-blue-600 transition-colors flex items-center justify-center space-x-2">
-                  <span>Buy Project</span>
-                  <img src={bag} alt="bag" className="w-5 h-5 object-contain" />
-                </button>
-              </Link>
+                <span>Buy Project</span>
+                <img src={bag} alt="bag" className="w-5 h-5 object-contain" />
+              </button>
             </div>
           ))}
         </div>

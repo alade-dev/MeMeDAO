@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   giphy2,
   giphy3,
@@ -15,6 +15,7 @@ import { useConnectUI, useIsConnected, useWallet } from "@fuels/react";
 import { getTokens } from "../../contractAPI";
 
 const Hero = () => {
+  const navigate = useNavigate();
   const [tokens, setTokens] = useState({
     data: [],
     loading: true,
@@ -38,7 +39,14 @@ const Hero = () => {
         const newTokens = fetchedToken.map((token, index) => ({
           name: token.name,
           ticker: token.ticker,
+          assertID: token.assertID,
+          contractId: token.contractId,
           image: [giphy2, giphy3, giphy4, giphy5, giphy6, giphy8][index] || giphy2,
+          category: "Hot", // You can modify these default values
+          duration: "1h",
+          createdBy: "Joshj",
+          marketCap: "calculating...",
+          status: "Live",
         }));
 
         setTokens({
@@ -66,6 +74,10 @@ const Hero = () => {
     }
   };
 
+  const handleTrendClick = (token) => {
+    navigate(`/token/${token.name}`, { state: { tokenData: token } });
+  };
+
   // Render trends content based on loading state
   const renderTrendsContent = () => {
     if (tokens.loading) {
@@ -78,11 +90,15 @@ const Hero = () => {
 
     const firstToken = tokens.data[0] || {
       name: "No Token Available",
-      image: giphy2
+      image: giphy2,
+      createdBy: "Joshj"
     };
 
     return (
-      <div className="flex items-center space-x-4">
+      <div 
+        className="flex items-center space-x-4 cursor-pointer hover:opacity-90 transition-opacity"
+        onClick={() => handleTrendClick(firstToken)}
+      >
         <img
           src={firstToken.image}
           alt="Meme"
@@ -98,7 +114,7 @@ const Hero = () => {
           <p>
             Created by:{" "}
             <span className="bg-gradient-to-r from-[#4782E0] to-fuchsia-300 bg-clip-text text-transparent">
-              Joshj
+              {firstToken.createdBy}
             </span>
           </p>
           <p>2hrs ago</p>
@@ -145,12 +161,10 @@ const Hero = () => {
             </Link>
           </div>
 
-          <Link to={"/"}>
-            <div className="bg-transparent border cursor-pointer border-fuchsia-300/20 border-r-0 p-6 rounded-xl shadow-md w-full max-w-lg text-center lg:text-left mb-16">
-              <h2 className="text-3xl font-bold mb-4">Explore the trends</h2>
-              {renderTrendsContent()}
-            </div>
-          </Link>
+          <div className="bg-transparent border cursor-pointer border-fuchsia-300/20 border-r-0 p-6 rounded-xl shadow-md w-full max-w-lg text-center lg:text-left mb-16">
+            <h2 className="text-3xl font-bold mb-4">Explore the trends</h2>
+            {renderTrendsContent()}
+          </div>
         </div>
 
         <RotatingMemes
