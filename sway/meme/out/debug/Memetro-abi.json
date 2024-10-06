@@ -1,442 +1,434 @@
 {
-  "programType": "contract",
-  "specVersion": "1",
-  "encodingVersion": "1",
-  "concreteTypes": [
+  "encoding": "1",
+  "types": [
     {
+      "typeId": 0,
       "type": "()",
-      "concreteTypeId": "2e38e77b22c314a449e91fafed92a43826ac6aa403ae6a8acb6cf58239fbaf5d"
+      "components": [],
+      "typeParameters": null
     },
     {
-      "type": "bool",
-      "concreteTypeId": "b760f44fa5965c2474a3b471467a22c43185152129295af588b022ae50b50903"
-    },
-    {
-      "type": "enum errors::CreationError",
-      "concreteTypeId": "b9d3180d4d8354fec9d767ca1d4144faf473449f3bb3b9eaaf7cfad767493283",
-      "metadataTypeId": 1
-    },
-    {
-      "type": "enum errors::InitializationError",
-      "concreteTypeId": "3a79be70205da1e6216e46787dcf4881c5d854117ca070fca61ac0387151ffbf",
-      "metadataTypeId": 2
-    },
-    {
-      "type": "enum errors::ProposalError",
-      "concreteTypeId": "e4678e892a64e5dc9a85beaa89dbbbf5dd3c52b6ae4c7296dbb69f5098ba17b6",
-      "metadataTypeId": 3
-    },
-    {
-      "type": "enum errors::UserError",
-      "concreteTypeId": "79552f475635af10ed8c2161c079f2b9b3bbfa38e29b3a584378d0c73d07685b",
-      "metadataTypeId": 4
-    },
-    {
-      "type": "enum std::identity::Identity",
-      "concreteTypeId": "ab7cd04e05be58e3fc15d424c2c4a57f824a2a2d97d67252440a3925ebdc1335",
-      "metadataTypeId": 5
-    },
-    {
-      "type": "struct data_structures::Proposal",
-      "concreteTypeId": "84c52f6e52fe2f2169a75745f0cd9aeb8d4c677e8153cf44e9ee90445c452ef3",
-      "metadataTypeId": 7
-    },
-    {
-      "type": "struct data_structures::ProposalInfo",
-      "concreteTypeId": "d86744c29e8efe30bca993ef3577346a72b729d1e78dbf144a5642c87379ad0e",
-      "metadataTypeId": 8
-    },
-    {
-      "type": "struct data_structures::Votes",
-      "concreteTypeId": "722495f2b051ae726bedb13422c0b29b032ce268905725d2677fc92c4663d194",
-      "metadataTypeId": 9
-    },
-    {
-      "type": "struct events::CreateProposalEvent",
-      "concreteTypeId": "72d1c58adea066d791b3787b2e22eb36c61aca37ffeb1041c84b4e5b24a410cd",
-      "metadataTypeId": 10
-    },
-    {
-      "type": "struct events::DepositEvent",
-      "concreteTypeId": "aeb9b947da259c606e2c25be1150e2150f609fe5f2ec593c9a7ebb771e4e7065",
-      "metadataTypeId": 11
-    },
-    {
-      "type": "struct events::ExecuteEvent",
-      "concreteTypeId": "cffc1c9c9483092b51708eb8dae1fb77a058ec8095b710c50b1ab8efb8785913",
-      "metadataTypeId": 12
-    },
-    {
-      "type": "struct events::InitializeEvent",
-      "concreteTypeId": "9185a6821d0b165ad35c9be4d80386c8a1bfc06c8aa55ed3322058b8929f87fa",
-      "metadataTypeId": 13
-    },
-    {
-      "type": "struct events::ThresholdReachedEvent",
-      "concreteTypeId": "4f3b4458a40c9f9d4d2b1e9047cc150f92a8b3fd3dc76598ffbc8cded0522445",
-      "metadataTypeId": 14
-    },
-    {
-      "type": "struct events::UnlockVotesEvent",
-      "concreteTypeId": "65470df734da38a9158eb008cf1bbd012853d7a564abfe9e0859c0ed18c49b64",
-      "metadataTypeId": 15
-    },
-    {
-      "type": "struct events::VoteEvent",
-      "concreteTypeId": "39448879540f67247432f3ec272c2b464088f7f758814cdee71311f8a5988f4a",
-      "metadataTypeId": 16
-    },
-    {
-      "type": "struct events::WithdrawEvent",
-      "concreteTypeId": "9787083b0003f388ec6bf30609ff6a10c76fada67314a162841a445b07a17168",
-      "metadataTypeId": 17
-    },
-    {
-      "type": "struct std::asset_id::AssetId",
-      "concreteTypeId": "c0710b6731b1dd59799cf6bef33eee3b3b04a2e40e80a0724090215bbf2ca974",
-      "metadataTypeId": 19
-    },
-    {
-      "type": "u64",
-      "concreteTypeId": "1506e6f44c1d6291cdf46395a8e573276a4fa79e8ace3fc891e092ef32d1b0a0"
-    }
-  ],
-  "metadataTypes": [
-    {
+      "typeId": 1,
       "type": "b256",
-      "metadataTypeId": 0
+      "components": null,
+      "typeParameters": null
     },
     {
-      "type": "enum errors::CreationError",
-      "metadataTypeId": 1,
+      "typeId": 2,
+      "type": "bool",
+      "components": null,
+      "typeParameters": null
+    },
+    {
+      "typeId": 3,
+      "type": "enum CreationError",
       "components": [
         {
           "name": "DurationCannotBeZero",
-          "typeId": "2e38e77b22c314a449e91fafed92a43826ac6aa403ae6a8acb6cf58239fbaf5d"
+          "type": 0,
+          "typeArguments": null
         },
         {
           "name": "InvalidAcceptancePercentage",
-          "typeId": "2e38e77b22c314a449e91fafed92a43826ac6aa403ae6a8acb6cf58239fbaf5d"
+          "type": 0,
+          "typeArguments": null
         }
-      ]
+      ],
+      "typeParameters": null
     },
     {
-      "type": "enum errors::InitializationError",
-      "metadataTypeId": 2,
-      "components": [
-        {
-          "name": "CannotReinitialize",
-          "typeId": "2e38e77b22c314a449e91fafed92a43826ac6aa403ae6a8acb6cf58239fbaf5d"
-        },
-        {
-          "name": "ContractNotInitialized",
-          "typeId": "2e38e77b22c314a449e91fafed92a43826ac6aa403ae6a8acb6cf58239fbaf5d"
-        }
-      ]
-    },
-    {
-      "type": "enum errors::ProposalError",
-      "metadataTypeId": 3,
-      "components": [
-        {
-          "name": "InsufficientApprovals",
-          "typeId": "2e38e77b22c314a449e91fafed92a43826ac6aa403ae6a8acb6cf58239fbaf5d"
-        },
-        {
-          "name": "ProposalExecuted",
-          "typeId": "2e38e77b22c314a449e91fafed92a43826ac6aa403ae6a8acb6cf58239fbaf5d"
-        },
-        {
-          "name": "ProposalExpired",
-          "typeId": "2e38e77b22c314a449e91fafed92a43826ac6aa403ae6a8acb6cf58239fbaf5d"
-        },
-        {
-          "name": "ProposalStillActive",
-          "typeId": "2e38e77b22c314a449e91fafed92a43826ac6aa403ae6a8acb6cf58239fbaf5d"
-        }
-      ]
-    },
-    {
-      "type": "enum errors::UserError",
-      "metadataTypeId": 4,
-      "components": [
-        {
-          "name": "AmountCannotBeZero",
-          "typeId": "2e38e77b22c314a449e91fafed92a43826ac6aa403ae6a8acb6cf58239fbaf5d"
-        },
-        {
-          "name": "IncorrectAssetSent",
-          "typeId": "2e38e77b22c314a449e91fafed92a43826ac6aa403ae6a8acb6cf58239fbaf5d"
-        },
-        {
-          "name": "InsufficientBalance",
-          "typeId": "2e38e77b22c314a449e91fafed92a43826ac6aa403ae6a8acb6cf58239fbaf5d"
-        },
-        {
-          "name": "InvalidId",
-          "typeId": "2e38e77b22c314a449e91fafed92a43826ac6aa403ae6a8acb6cf58239fbaf5d"
-        },
-        {
-          "name": "VoteAmountCannotBeZero",
-          "typeId": "2e38e77b22c314a449e91fafed92a43826ac6aa403ae6a8acb6cf58239fbaf5d"
-        }
-      ]
-    },
-    {
-      "type": "enum std::identity::Identity",
-      "metadataTypeId": 5,
+      "typeId": 4,
+      "type": "enum Identity",
       "components": [
         {
           "name": "Address",
-          "typeId": 18
+          "type": 8,
+          "typeArguments": null
         },
         {
           "name": "ContractId",
-          "typeId": 20
+          "type": 11,
+          "typeArguments": null
         }
-      ]
+      ],
+      "typeParameters": null
     },
     {
-      "type": "struct data_structures::CallData",
-      "metadataTypeId": 6,
+      "typeId": 5,
+      "type": "enum InitializationError",
+      "components": [
+        {
+          "name": "CannotReinitialize",
+          "type": 0,
+          "typeArguments": null
+        },
+        {
+          "name": "ContractNotInitialized",
+          "type": 0,
+          "typeArguments": null
+        }
+      ],
+      "typeParameters": null
+    },
+    {
+      "typeId": 6,
+      "type": "enum ProposalError",
+      "components": [
+        {
+          "name": "InsufficientApprovals",
+          "type": 0,
+          "typeArguments": null
+        },
+        {
+          "name": "ProposalExecuted",
+          "type": 0,
+          "typeArguments": null
+        },
+        {
+          "name": "ProposalExpired",
+          "type": 0,
+          "typeArguments": null
+        },
+        {
+          "name": "ProposalStillActive",
+          "type": 0,
+          "typeArguments": null
+        }
+      ],
+      "typeParameters": null
+    },
+    {
+      "typeId": 7,
+      "type": "enum UserError",
+      "components": [
+        {
+          "name": "AmountCannotBeZero",
+          "type": 0,
+          "typeArguments": null
+        },
+        {
+          "name": "IncorrectAssetSent",
+          "type": 0,
+          "typeArguments": null
+        },
+        {
+          "name": "InsufficientBalance",
+          "type": 0,
+          "typeArguments": null
+        },
+        {
+          "name": "InvalidId",
+          "type": 0,
+          "typeArguments": null
+        },
+        {
+          "name": "VoteAmountCannotBeZero",
+          "type": 0,
+          "typeArguments": null
+        }
+      ],
+      "typeParameters": null
+    },
+    {
+      "typeId": 8,
+      "type": "struct Address",
+      "components": [
+        {
+          "name": "bits",
+          "type": 1,
+          "typeArguments": null
+        }
+      ],
+      "typeParameters": null
+    },
+    {
+      "typeId": 9,
+      "type": "struct AssetId",
+      "components": [
+        {
+          "name": "bits",
+          "type": 1,
+          "typeArguments": null
+        }
+      ],
+      "typeParameters": null
+    },
+    {
+      "typeId": 10,
+      "type": "struct CallData",
       "components": [
         {
           "name": "arguments",
-          "typeId": "1506e6f44c1d6291cdf46395a8e573276a4fa79e8ace3fc891e092ef32d1b0a0"
+          "type": 23,
+          "typeArguments": null
         },
         {
           "name": "function_selector",
-          "typeId": "1506e6f44c1d6291cdf46395a8e573276a4fa79e8ace3fc891e092ef32d1b0a0"
+          "type": 23,
+          "typeArguments": null
         },
         {
           "name": "id",
-          "typeId": 20
+          "type": 11,
+          "typeArguments": null
         }
-      ]
+      ],
+      "typeParameters": null
     },
     {
-      "type": "struct data_structures::Proposal",
-      "metadataTypeId": 7,
+      "typeId": 11,
+      "type": "struct ContractId",
       "components": [
         {
-          "name": "amount",
-          "typeId": "1506e6f44c1d6291cdf46395a8e573276a4fa79e8ace3fc891e092ef32d1b0a0"
-        },
-        {
-          "name": "asset",
-          "typeId": 19
-        },
-        {
-          "name": "call_data",
-          "typeId": 6
-        },
-        {
-          "name": "gas",
-          "typeId": "1506e6f44c1d6291cdf46395a8e573276a4fa79e8ace3fc891e092ef32d1b0a0"
+          "name": "bits",
+          "type": 1,
+          "typeArguments": null
         }
-      ]
+      ],
+      "typeParameters": null
     },
     {
-      "type": "struct data_structures::ProposalInfo",
-      "metadataTypeId": 8,
-      "components": [
-        {
-          "name": "acceptance_percentage",
-          "typeId": "1506e6f44c1d6291cdf46395a8e573276a4fa79e8ace3fc891e092ef32d1b0a0"
-        },
-        {
-          "name": "author",
-          "typeId": 5
-        },
-        {
-          "name": "deadline",
-          "typeId": "1506e6f44c1d6291cdf46395a8e573276a4fa79e8ace3fc891e092ef32d1b0a0"
-        },
-        {
-          "name": "executed",
-          "typeId": "b760f44fa5965c2474a3b471467a22c43185152129295af588b022ae50b50903"
-        },
-        {
-          "name": "no_votes",
-          "typeId": "1506e6f44c1d6291cdf46395a8e573276a4fa79e8ace3fc891e092ef32d1b0a0"
-        },
-        {
-          "name": "proposal_transaction",
-          "typeId": 7
-        },
-        {
-          "name": "yes_votes",
-          "typeId": "1506e6f44c1d6291cdf46395a8e573276a4fa79e8ace3fc891e092ef32d1b0a0"
-        }
-      ]
-    },
-    {
-      "type": "struct data_structures::Votes",
-      "metadataTypeId": 9,
-      "components": [
-        {
-          "name": "no_votes",
-          "typeId": "1506e6f44c1d6291cdf46395a8e573276a4fa79e8ace3fc891e092ef32d1b0a0"
-        },
-        {
-          "name": "yes_votes",
-          "typeId": "1506e6f44c1d6291cdf46395a8e573276a4fa79e8ace3fc891e092ef32d1b0a0"
-        }
-      ]
-    },
-    {
-      "type": "struct events::CreateProposalEvent",
-      "metadataTypeId": 10,
+      "typeId": 12,
+      "type": "struct CreateProposalEvent",
       "components": [
         {
           "name": "id",
-          "typeId": "1506e6f44c1d6291cdf46395a8e573276a4fa79e8ace3fc891e092ef32d1b0a0"
+          "type": 23,
+          "typeArguments": null
         },
         {
           "name": "proposal_info",
-          "typeId": 8
+          "type": 17,
+          "typeArguments": null
         }
-      ]
+      ],
+      "typeParameters": null
     },
     {
-      "type": "struct events::DepositEvent",
-      "metadataTypeId": 11,
+      "typeId": 13,
+      "type": "struct DepositEvent",
       "components": [
         {
           "name": "amount",
-          "typeId": "1506e6f44c1d6291cdf46395a8e573276a4fa79e8ace3fc891e092ef32d1b0a0"
+          "type": 23,
+          "typeArguments": null
         },
         {
           "name": "user",
-          "typeId": 5
+          "type": 4,
+          "typeArguments": null
         }
-      ]
+      ],
+      "typeParameters": null
     },
     {
-      "type": "struct events::ExecuteEvent",
-      "metadataTypeId": 12,
+      "typeId": 14,
+      "type": "struct ExecuteEvent",
       "components": [
         {
           "name": "acceptance_percentage",
-          "typeId": "1506e6f44c1d6291cdf46395a8e573276a4fa79e8ace3fc891e092ef32d1b0a0"
+          "type": 23,
+          "typeArguments": null
         },
         {
           "name": "id",
-          "typeId": "1506e6f44c1d6291cdf46395a8e573276a4fa79e8ace3fc891e092ef32d1b0a0"
+          "type": 23,
+          "typeArguments": null
         },
         {
           "name": "user",
-          "typeId": 5
+          "type": 4,
+          "typeArguments": null
         }
-      ]
+      ],
+      "typeParameters": null
     },
     {
-      "type": "struct events::InitializeEvent",
-      "metadataTypeId": 13,
+      "typeId": 15,
+      "type": "struct InitializeEvent",
       "components": [
         {
           "name": "author",
-          "typeId": 5
+          "type": 4,
+          "typeArguments": null
         },
         {
           "name": "meme_coin_asset",
-          "typeId": 19
+          "type": 9,
+          "typeArguments": null
         }
-      ]
+      ],
+      "typeParameters": null
     },
     {
-      "type": "struct events::ThresholdReachedEvent",
-      "metadataTypeId": 14,
-      "components": [
-        {
-          "name": "buyer",
-          "typeId": 5
-        },
-        {
-          "name": "total_value",
-          "typeId": "1506e6f44c1d6291cdf46395a8e573276a4fa79e8ace3fc891e092ef32d1b0a0"
-        }
-      ]
-    },
-    {
-      "type": "struct events::UnlockVotesEvent",
-      "metadataTypeId": 15,
-      "components": [
-        {
-          "name": "id",
-          "typeId": "1506e6f44c1d6291cdf46395a8e573276a4fa79e8ace3fc891e092ef32d1b0a0"
-        },
-        {
-          "name": "user",
-          "typeId": 5
-        },
-        {
-          "name": "vote_amount",
-          "typeId": "1506e6f44c1d6291cdf46395a8e573276a4fa79e8ace3fc891e092ef32d1b0a0"
-        }
-      ]
-    },
-    {
-      "type": "struct events::VoteEvent",
-      "metadataTypeId": 16,
-      "components": [
-        {
-          "name": "id",
-          "typeId": "1506e6f44c1d6291cdf46395a8e573276a4fa79e8ace3fc891e092ef32d1b0a0"
-        },
-        {
-          "name": "user",
-          "typeId": 5
-        },
-        {
-          "name": "vote_amount",
-          "typeId": "1506e6f44c1d6291cdf46395a8e573276a4fa79e8ace3fc891e092ef32d1b0a0"
-        }
-      ]
-    },
-    {
-      "type": "struct events::WithdrawEvent",
-      "metadataTypeId": 17,
+      "typeId": 16,
+      "type": "struct Proposal",
       "components": [
         {
           "name": "amount",
-          "typeId": "1506e6f44c1d6291cdf46395a8e573276a4fa79e8ace3fc891e092ef32d1b0a0"
+          "type": 23,
+          "typeArguments": null
+        },
+        {
+          "name": "asset",
+          "type": 9,
+          "typeArguments": null
+        },
+        {
+          "name": "call_data",
+          "type": 10,
+          "typeArguments": null
+        },
+        {
+          "name": "gas",
+          "type": 23,
+          "typeArguments": null
+        }
+      ],
+      "typeParameters": null
+    },
+    {
+      "typeId": 17,
+      "type": "struct ProposalInfo",
+      "components": [
+        {
+          "name": "acceptance_percentage",
+          "type": 23,
+          "typeArguments": null
+        },
+        {
+          "name": "author",
+          "type": 4,
+          "typeArguments": null
+        },
+        {
+          "name": "deadline",
+          "type": 23,
+          "typeArguments": null
+        },
+        {
+          "name": "executed",
+          "type": 2,
+          "typeArguments": null
+        },
+        {
+          "name": "no_votes",
+          "type": 23,
+          "typeArguments": null
+        },
+        {
+          "name": "proposal_transaction",
+          "type": 16,
+          "typeArguments": null
+        },
+        {
+          "name": "yes_votes",
+          "type": 23,
+          "typeArguments": null
+        }
+      ],
+      "typeParameters": null
+    },
+    {
+      "typeId": 18,
+      "type": "struct ThresholdReachedEvent",
+      "components": [
+        {
+          "name": "buyer",
+          "type": 4,
+          "typeArguments": null
+        },
+        {
+          "name": "total_value",
+          "type": 23,
+          "typeArguments": null
+        }
+      ],
+      "typeParameters": null
+    },
+    {
+      "typeId": 19,
+      "type": "struct UnlockVotesEvent",
+      "components": [
+        {
+          "name": "id",
+          "type": 23,
+          "typeArguments": null
         },
         {
           "name": "user",
-          "typeId": 5
+          "type": 4,
+          "typeArguments": null
+        },
+        {
+          "name": "vote_amount",
+          "type": 23,
+          "typeArguments": null
         }
-      ]
+      ],
+      "typeParameters": null
     },
     {
-      "type": "struct std::address::Address",
-      "metadataTypeId": 18,
+      "typeId": 20,
+      "type": "struct VoteEvent",
       "components": [
         {
-          "name": "bits",
-          "typeId": 0
+          "name": "id",
+          "type": 23,
+          "typeArguments": null
+        },
+        {
+          "name": "user",
+          "type": 4,
+          "typeArguments": null
+        },
+        {
+          "name": "vote_amount",
+          "type": 23,
+          "typeArguments": null
         }
-      ]
+      ],
+      "typeParameters": null
     },
     {
-      "type": "struct std::asset_id::AssetId",
-      "metadataTypeId": 19,
+      "typeId": 21,
+      "type": "struct Votes",
       "components": [
         {
-          "name": "bits",
-          "typeId": 0
+          "name": "no_votes",
+          "type": 23,
+          "typeArguments": null
+        },
+        {
+          "name": "yes_votes",
+          "type": 23,
+          "typeArguments": null
         }
-      ]
+      ],
+      "typeParameters": null
     },
     {
-      "type": "struct std::contract_id::ContractId",
-      "metadataTypeId": 20,
+      "typeId": 22,
+      "type": "struct WithdrawEvent",
       "components": [
         {
-          "name": "bits",
-          "typeId": 0
+          "name": "amount",
+          "type": 23,
+          "typeArguments": null
+        },
+        {
+          "name": "user",
+          "type": 4,
+          "typeArguments": null
         }
-      ]
+      ],
+      "typeParameters": null
+    },
+    {
+      "typeId": 23,
+      "type": "u64",
+      "components": null,
+      "typeParameters": null
     }
   ],
   "functions": [
@@ -444,11 +436,16 @@
       "inputs": [
         {
           "name": "meme_coin_asset",
-          "concreteTypeId": "c0710b6731b1dd59799cf6bef33eee3b3b04a2e40e80a0724090215bbf2ca974"
+          "type": 9,
+          "typeArguments": null
         }
       ],
       "name": "buy",
-      "output": "2e38e77b22c314a449e91fafed92a43826ac6aa403ae6a8acb6cf58239fbaf5d",
+      "output": {
+        "name": "",
+        "type": 0,
+        "typeArguments": null
+      },
       "attributes": [
         {
           "name": "doc-comment",
@@ -473,11 +470,16 @@
       "inputs": [
         {
           "name": "meme_coin_asset",
-          "concreteTypeId": "c0710b6731b1dd59799cf6bef33eee3b3b04a2e40e80a0724090215bbf2ca974"
+          "type": 9,
+          "typeArguments": null
         }
       ],
       "name": "constructor",
-      "output": "2e38e77b22c314a449e91fafed92a43826ac6aa403ae6a8acb6cf58239fbaf5d",
+      "output": {
+        "name": "",
+        "type": 0,
+        "typeArguments": null
+      },
       "attributes": [
         {
           "name": "storage",
@@ -492,19 +494,26 @@
       "inputs": [
         {
           "name": "acceptance_percentage",
-          "concreteTypeId": "1506e6f44c1d6291cdf46395a8e573276a4fa79e8ace3fc891e092ef32d1b0a0"
+          "type": 23,
+          "typeArguments": null
         },
         {
           "name": "duration",
-          "concreteTypeId": "1506e6f44c1d6291cdf46395a8e573276a4fa79e8ace3fc891e092ef32d1b0a0"
+          "type": 23,
+          "typeArguments": null
         },
         {
           "name": "proposal_transaction",
-          "concreteTypeId": "84c52f6e52fe2f2169a75745f0cd9aeb8d4c677e8153cf44e9ee90445c452ef3"
+          "type": 16,
+          "typeArguments": null
         }
       ],
       "name": "create_proposal",
-      "output": "2e38e77b22c314a449e91fafed92a43826ac6aa403ae6a8acb6cf58239fbaf5d",
+      "output": {
+        "name": "",
+        "type": 0,
+        "typeArguments": null
+      },
       "attributes": [
         {
           "name": "storage",
@@ -518,7 +527,11 @@
     {
       "inputs": [],
       "name": "deposit",
-      "output": "2e38e77b22c314a449e91fafed92a43826ac6aa403ae6a8acb6cf58239fbaf5d",
+      "output": {
+        "name": "",
+        "type": 0,
+        "typeArguments": null
+      },
       "attributes": [
         {
           "name": "payable",
@@ -537,11 +550,16 @@
       "inputs": [
         {
           "name": "proposal_id",
-          "concreteTypeId": "1506e6f44c1d6291cdf46395a8e573276a4fa79e8ace3fc891e092ef32d1b0a0"
+          "type": 23,
+          "typeArguments": null
         }
       ],
       "name": "execute",
-      "output": "2e38e77b22c314a449e91fafed92a43826ac6aa403ae6a8acb6cf58239fbaf5d",
+      "output": {
+        "name": "",
+        "type": 0,
+        "typeArguments": null
+      },
       "attributes": [
         {
           "name": "storage",
@@ -556,11 +574,16 @@
       "inputs": [
         {
           "name": "amount",
-          "concreteTypeId": "1506e6f44c1d6291cdf46395a8e573276a4fa79e8ace3fc891e092ef32d1b0a0"
+          "type": 23,
+          "typeArguments": null
         }
       ],
       "name": "sell",
-      "output": "2e38e77b22c314a449e91fafed92a43826ac6aa403ae6a8acb6cf58239fbaf5d",
+      "output": {
+        "name": "",
+        "type": 0,
+        "typeArguments": null
+      },
       "attributes": [
         {
           "name": "doc-comment",
@@ -581,11 +604,16 @@
       "inputs": [
         {
           "name": "proposal_id",
-          "concreteTypeId": "1506e6f44c1d6291cdf46395a8e573276a4fa79e8ace3fc891e092ef32d1b0a0"
+          "type": 23,
+          "typeArguments": null
         }
       ],
       "name": "unlock_votes",
-      "output": "2e38e77b22c314a449e91fafed92a43826ac6aa403ae6a8acb6cf58239fbaf5d",
+      "output": {
+        "name": "",
+        "type": 0,
+        "typeArguments": null
+      },
       "attributes": [
         {
           "name": "storage",
@@ -600,19 +628,26 @@
       "inputs": [
         {
           "name": "approve",
-          "concreteTypeId": "b760f44fa5965c2474a3b471467a22c43185152129295af588b022ae50b50903"
+          "type": 2,
+          "typeArguments": null
         },
         {
           "name": "proposal_id",
-          "concreteTypeId": "1506e6f44c1d6291cdf46395a8e573276a4fa79e8ace3fc891e092ef32d1b0a0"
+          "type": 23,
+          "typeArguments": null
         },
         {
           "name": "vote_amount",
-          "concreteTypeId": "1506e6f44c1d6291cdf46395a8e573276a4fa79e8ace3fc891e092ef32d1b0a0"
+          "type": 23,
+          "typeArguments": null
         }
       ],
       "name": "vote",
-      "output": "2e38e77b22c314a449e91fafed92a43826ac6aa403ae6a8acb6cf58239fbaf5d",
+      "output": {
+        "name": "",
+        "type": 0,
+        "typeArguments": null
+      },
       "attributes": [
         {
           "name": "storage",
@@ -627,11 +662,16 @@
       "inputs": [
         {
           "name": "amount",
-          "concreteTypeId": "1506e6f44c1d6291cdf46395a8e573276a4fa79e8ace3fc891e092ef32d1b0a0"
+          "type": 23,
+          "typeArguments": null
         }
       ],
       "name": "withdraw",
-      "output": "2e38e77b22c314a449e91fafed92a43826ac6aa403ae6a8acb6cf58239fbaf5d",
+      "output": {
+        "name": "",
+        "type": 0,
+        "typeArguments": null
+      },
       "attributes": [
         {
           "name": "storage",
@@ -645,7 +685,11 @@
     {
       "inputs": [],
       "name": "balance",
-      "output": "1506e6f44c1d6291cdf46395a8e573276a4fa79e8ace3fc891e092ef32d1b0a0",
+      "output": {
+        "name": "",
+        "type": 23,
+        "typeArguments": null
+      },
       "attributes": [
         {
           "name": "storage",
@@ -658,7 +702,11 @@
     {
       "inputs": [],
       "name": "governance_asset_id",
-      "output": "c0710b6731b1dd59799cf6bef33eee3b3b04a2e40e80a0724090215bbf2ca974",
+      "output": {
+        "name": "",
+        "type": 9,
+        "typeArguments": null
+      },
       "attributes": [
         {
           "name": "storage",
@@ -672,11 +720,16 @@
       "inputs": [
         {
           "name": "proposal_id",
-          "concreteTypeId": "1506e6f44c1d6291cdf46395a8e573276a4fa79e8ace3fc891e092ef32d1b0a0"
+          "type": 23,
+          "typeArguments": null
         }
       ],
       "name": "proposal",
-      "output": "d86744c29e8efe30bca993ef3577346a72b729d1e78dbf144a5642c87379ad0e",
+      "output": {
+        "name": "",
+        "type": 17,
+        "typeArguments": null
+      },
       "attributes": [
         {
           "name": "storage",
@@ -689,7 +742,11 @@
     {
       "inputs": [],
       "name": "proposal_count",
-      "output": "1506e6f44c1d6291cdf46395a8e573276a4fa79e8ace3fc891e092ef32d1b0a0",
+      "output": {
+        "name": "",
+        "type": 23,
+        "typeArguments": null
+      },
       "attributes": [
         {
           "name": "storage",
@@ -703,11 +760,16 @@
       "inputs": [
         {
           "name": "user",
-          "concreteTypeId": "ab7cd04e05be58e3fc15d424c2c4a57f824a2a2d97d67252440a3925ebdc1335"
+          "type": 4,
+          "typeArguments": null
         }
       ],
       "name": "user_balance",
-      "output": "1506e6f44c1d6291cdf46395a8e573276a4fa79e8ace3fc891e092ef32d1b0a0",
+      "output": {
+        "name": "",
+        "type": 23,
+        "typeArguments": null
+      },
       "attributes": [
         {
           "name": "storage",
@@ -721,15 +783,21 @@
       "inputs": [
         {
           "name": "proposal_id",
-          "concreteTypeId": "1506e6f44c1d6291cdf46395a8e573276a4fa79e8ace3fc891e092ef32d1b0a0"
+          "type": 23,
+          "typeArguments": null
         },
         {
           "name": "user",
-          "concreteTypeId": "ab7cd04e05be58e3fc15d424c2c4a57f824a2a2d97d67252440a3925ebdc1335"
+          "type": 4,
+          "typeArguments": null
         }
       ],
       "name": "user_votes",
-      "output": "722495f2b051ae726bedb13422c0b29b032ce268905725d2677fc92c4663d194",
+      "output": {
+        "name": "",
+        "type": 21,
+        "typeArguments": null
+      },
       "attributes": [
         {
           "name": "storage",
@@ -743,51 +811,99 @@
   "loggedTypes": [
     {
       "logId": "8742946235045228304",
-      "concreteTypeId": "79552f475635af10ed8c2161c079f2b9b3bbfa38e29b3a584378d0c73d07685b"
+      "loggedType": {
+        "name": "",
+        "type": 7,
+        "typeArguments": []
+      }
     },
     {
       "logId": "5709232100122337181",
-      "concreteTypeId": "4f3b4458a40c9f9d4d2b1e9047cc150f92a8b3fd3dc76598ffbc8cded0522445"
+      "loggedType": {
+        "name": "",
+        "type": 18,
+        "typeArguments": []
+      }
     },
     {
       "logId": "4213608315170431462",
-      "concreteTypeId": "3a79be70205da1e6216e46787dcf4881c5d854117ca070fca61ac0387151ffbf"
+      "loggedType": {
+        "name": "",
+        "type": 5,
+        "typeArguments": []
+      }
     },
     {
       "logId": "10485970385165293146",
-      "concreteTypeId": "9185a6821d0b165ad35c9be4d80386c8a1bfc06c8aa55ed3322058b8929f87fa"
+      "loggedType": {
+        "name": "",
+        "type": 15,
+        "typeArguments": []
+      }
     },
     {
       "logId": "13390072562516710654",
-      "concreteTypeId": "b9d3180d4d8354fec9d767ca1d4144faf473449f3bb3b9eaaf7cfad767493283"
+      "loggedType": {
+        "name": "",
+        "type": 3,
+        "typeArguments": []
+      }
     },
     {
       "logId": "8273611190687524567",
-      "concreteTypeId": "72d1c58adea066d791b3787b2e22eb36c61aca37ffeb1041c84b4e5b24a410cd"
+      "loggedType": {
+        "name": "",
+        "type": 12,
+        "typeArguments": []
+      }
     },
     {
       "logId": "12590297951544646752",
-      "concreteTypeId": "aeb9b947da259c606e2c25be1150e2150f609fe5f2ec593c9a7ebb771e4e7065"
+      "loggedType": {
+        "name": "",
+        "type": 13,
+        "typeArguments": []
+      }
     },
     {
       "logId": "16458280083021686236",
-      "concreteTypeId": "e4678e892a64e5dc9a85beaa89dbbbf5dd3c52b6ae4c7296dbb69f5098ba17b6"
+      "loggedType": {
+        "name": "",
+        "type": 6,
+        "typeArguments": []
+      }
     },
     {
       "logId": "14986885118814259499",
-      "concreteTypeId": "cffc1c9c9483092b51708eb8dae1fb77a058ec8095b710c50b1ab8efb8785913"
+      "loggedType": {
+        "name": "",
+        "type": 14,
+        "typeArguments": []
+      }
     },
     {
       "logId": "7297817076571977897",
-      "concreteTypeId": "65470df734da38a9158eb008cf1bbd012853d7a564abfe9e0859c0ed18c49b64"
+      "loggedType": {
+        "name": "",
+        "type": 19,
+        "typeArguments": []
+      }
     },
     {
       "logId": "4126573213260932900",
-      "concreteTypeId": "39448879540f67247432f3ec272c2b464088f7f758814cdee71311f8a5988f4a"
+      "loggedType": {
+        "name": "",
+        "type": 20,
+        "typeArguments": []
+      }
     },
     {
       "logId": "10918704871079408520",
-      "concreteTypeId": "9787083b0003f388ec6bf30609ff6a10c76fada67314a162841a445b07a17168"
+      "loggedType": {
+        "name": "",
+        "type": 22,
+        "typeArguments": []
+      }
     }
   ],
   "messagesTypes": [],
