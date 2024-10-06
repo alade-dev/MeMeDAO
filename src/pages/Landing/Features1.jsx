@@ -1,20 +1,63 @@
-import { useState } from "react";
-import tokens from "../../data";
+import { useEffect, useState } from "react";
+import {
+  giphy2,
+  giphy3,
+  giphy4,
+  giphy5,
+  giphy6,
+  giphy8,
+} from "../../assets/gif/index";
+// import tokens from "../../data";
 import { bag } from "../../assets/icons";
 import { Link } from "react-router-dom";
+import { useWallet } from "@fuels/react";
+import { getTokens } from "../../contractAPI";
 
 const Feature = () => {
   const [selectedCategory, setSelectedCategory] = useState("Hot");
   const [selectedDuration, setSelectedDuration] = useState("1h");
+  const [tokens, setTokens] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const { wallet } = useWallet();
+
+  useEffect(() => {
+    const fetchTokens = async () => {
+      try {
+        if (wallet) {
+          const fetchedToken = await getTokens(wallet);
+          const newTokens = fetchedToken.map((token, index) => ({
+            name: token.name,
+            ticker: token.ticker,
+            txId: token.txId,
+            image: [giphy2, giphy3, giphy4, giphy5, giphy6, giphy8][index],
+            category: "Hot", // You can modify these default values
+            duration: "1h", // based on your needs
+            createdBy: "Anonymous", // or fetch from your contract
+            marketCap: "calculating...", // or fetch from your contract
+            status: "Live" // or fetch from your contract
+          }));
+          setTokens(newTokens);
+        }
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchTokens();
+  }, [wallet]);
 
   // Filter tokens by selected category and duration
-  const filteredTokens = tokens
-    .filter(
-      (token) =>
-        token.category === selectedCategory &&
-        token.duration === selectedDuration
-    )
-    .flatMap((token) => token.projects);
+  const filteredTokens = tokens.filter(
+    (token) =>
+      token.category === selectedCategory &&
+      token.duration === selectedDuration
+  );
+
+  if (loading) {
+    return <div className="text-white text-center">Loading...</div>;
+  }
 
   return (
     <div className="p-4 sm:p-6 bg-[#2A2A2A] text-white min-h-screen mx-auto max-w-screen-2xl">
@@ -63,42 +106,42 @@ const Feature = () => {
           <p>Created By</p>
           <p>Market Cap</p>
           <p>Status</p>
-          <p></p> {/* Empty cell for Buy Project button alignment */}
+          <p></p>
         </div>
         <div className="max-h-[660px] overflow-y-auto scrollbar-thin scrollbar-thumb-blue-500 scrollbar-track-gray-300/10">
-          {filteredTokens.map((project, index) => (
+          {filteredTokens.map((token, index) => (
             <div
               key={index}
               className="grid grid-cols-[2fr,1fr,1fr,1fr,1fr] gap-4 items-center bg-gray-800/30 rounded-lg p-4 mb-4"
             >
               <Link
-                to={`/token/${project.name}`}
+                to={`/token/${token.name}`}
                 className="flex items-center space-x-4"
               >
                 <div className="relative w-full sm:w-auto">
                   <img
-                    src={project.image}
-                    alt={project.name}
+                    src={token.image}
+                    alt={token.name}
                     className="w-full sm:w-[180px] h-[170px] object-cover rounded-lg"
                   />
                   <div className="absolute bottom-0 left-0 w-full bg-black bg-opacity-50 text-white p-2 text-center">
-                    <h3 className="text-lg font-bold">{project.name}</h3>
+                    <h3 className="text-lg font-bold">{token.name}</h3>
                   </div>
                 </div>
               </Link>
-              <p className="text-sm text-[#D9D9D9]">{project.createdBy}</p>
-              <p className="text-sm text-[#D9D9D9]">{project.marketCap}</p>
+              <p className="text-sm text-[#D9D9D9]">{token.createdBy}</p>
+              <p className="text-sm text-[#D9D9D9]">{token.marketCap}</p>
               <p
                 className={`text-sm font-bold ${
-                  project.status === "Live"
+                  token.status === "Live"
                     ? "text-green-500"
                     : "text-[#D9D9D9]"
                 }`}
               >
-                {project.status}
+                {token.status}
               </p>
               <Link
-                to={`/token/${project.name}`}
+                to={`/token/${token.name}`}
                 className="flex items-center space-x-4"
               >
                 <button className="bg-blue-500 text-white py-4 px-4 rounded-md font-semibold hover:bg-blue-600 transition-colors flex items-center justify-center space-x-2">

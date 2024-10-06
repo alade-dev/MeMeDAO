@@ -7,7 +7,7 @@ import {
   // giphy8,
 } from "./assets/gif/index";
 
-const tokens = [
+export const tokens = [
   {
     category: "Hot",
     duration: "1h",
@@ -17,6 +17,7 @@ const tokens = [
         image: giphy2,
         createdBy: "Toheeb",
         marketCap: "6.2k",
+        description: "This is a meme and Dao token",
         status: "Live",
         projectStatus: "Live project",
         assetId: '0xae27e13c21cd096f7ff809af576fe9895338106f377b7032a435ae0916f447ca',
@@ -33,6 +34,7 @@ const tokens = [
         name: "Funfti.meme",
         image: giphy4,
         createdBy: "Toheeb",
+        description: "This is a meme token",
         marketCap: "6.2k",
         status: "Live",
         projectStatus: "Live project",
@@ -51,6 +53,7 @@ const tokens = [
         image: giphy3,
         createdBy: "Toheeb",
         marketCap: "6.2k",
+        description: "This is a meme and pump token",
         status: "Live",
         projectStatus: "Live project",
         assetId: '0xe53a36e6080ce179e8acedb86fd0210281c2115c7d1615ee399576baa5558c49',

@@ -135,7 +135,7 @@ const Token = () => {
                     />
 
                     {/* Meme details */}
-                    <div className="text-left text-base leading-6 ">
+                    <div className="text-left text-sm leading-6 ">
                       <p>
                         Created by:{" "}
                         <span className="bg-gradient-to-r from-[#4782E0] to-fuchsia-300 bg-clip-text text-transparent">
@@ -149,7 +149,7 @@ const Token = () => {
                       <div className="bg-white rounded-full h-2 w-full mt-1">
                         <div
                           className="bg-[#4782E0] h-2 rounded-full"
-                          style={{ width: "95%" }}
+                          style={{ width: "0%" }}
                         ></div>
                       </div>
                     </div>
@@ -233,7 +233,7 @@ const BuySellSection = () => {
           <form className="w-full">
             <div className="relative w-full md:inline-block bg-[#2d2d35] rounded-md px-4 py-2 border border-transparent hover:border-gray-500 focus-within:border-gray-500 transition-colors">
               <input
-                type="number"
+                type="float"
                 min={0}
                 required
                 placeholder="0.0"

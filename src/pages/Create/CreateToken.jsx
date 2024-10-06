@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { backarrow, mark } from "../../assets/icons";
 import { giphy2, giphy3, giphy4 } from "../../assets/gif/index";
 import "./CreateToken.css";
-import { setToken, deployDaoContract, getTokenContract, buyToken } from "../../contractAPI";
+import { setToken, deployDaoContract, getTokenContract } from "../../contractAPI";
 import { useWallet } from "@fuels/react";
 import { motion } from "framer-motion";
 

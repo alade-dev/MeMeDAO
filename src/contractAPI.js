@@ -3,8 +3,10 @@ import { getRandomB256 } from "fuels";
 import { createAssetId } from "./utils/assetId";
 import { bn, hexlify } from "fuels";
 
-const contractId = "0x44c4813dc4f64a1dda8dc286bab9a05674328d32bf47191aaa92c850387a48ed";
-const tokenFactoryId = "0x52d798e161ddff6856fa832491e55cd4e0ce64910130c5bdbbda98049530492b"
+const contractId =
+  "0x44c4813dc4f64a1dda8dc286bab9a05674328d32bf47191aaa92c850387a48ed";
+const tokenFactoryId =
+  "0x52d798e161ddff6856fa832491e55cd4e0ce64910130c5bdbbda98049530492b";
 
 export function getTokenContract(wallet) {
   const tokenContract = new Src20(contractId, wallet);
@@ -17,9 +19,9 @@ export function getTokenFactoryContract(wallet) {
 }
 
 export function getDaoContract(contractId, wallet) {
-    const daoContract = new Memetro(contractId, wallet);
-    return daoContract;
-  }
+  const daoContract = new Memetro(contractId, wallet);
+  return daoContract;
+}
 
 export async function deployDaoContract(wallet, assetId) {
   // Initialize the contract factory
@@ -37,7 +39,7 @@ export async function deployDaoContract(wallet, assetId) {
   const { contract, transactionResult } = await waitForResult();
   console.log(contract, contractId, transactionId);
   await contract.functions.constructor(assetId).call();
-  const hexId = hexlify(contractId)
+  const hexId = hexlify(contractId);
   await factoryContract.functions.add_asset_ids(assetId, hexId).call();
 }
 
@@ -56,27 +58,32 @@ export async function setToken(contract, formData) {
 }
 
 export async function initializeContract(contract) {
-    console.log(contract.account.address.toB256());
-    const addressInput = { bits: contract.account.address.toB256() };
-    const identityInput = { Address: addressInput };
+  console.log(contract.account.address.toB256());
+  const addressInput = { bits: contract.account.address.toB256() };
+  const identityInput = { Address: addressInput };
 }
 
 export async function buyToken(contractId, wallet, amount) {
-    const daoContract = getDaoContract(contractId, wallet);
-    const tokenContract = getTokenContract(wallet);
-    const baseAssetId = daoContract.provider.getBaseAssetId();
-    console.log(await daoContract.functions.governance_asset_id().get())
-    const addressInput = { bits: tokenContract.account.address.toB256() };
-    const identityInput = { Address: addressInput };
-    await daoContract.functions.buy()
-        .callParams({
-            forward: [amount, baseAssetId],
-        })
-        .call();
-    await tokenContract.functions.mint(identityInput, '0xcaadc5c961296450832e1f151eed1da690f11ab9ea5241d8c8c788284ccc16d0', bn(amount*100000000)).call()
-
+  const daoContract = getDaoContract(contractId, wallet);
+  const tokenContract = getTokenContract(wallet);
+  const baseAssetId = daoContract.provider.getBaseAssetId();
+  console.log(await daoContract.functions.governance_asset_id().get());
+  const addressInput = { bits: tokenContract.account.address.toB256() };
+  const identityInput = { Address: addressInput };
+  await daoContract.functions
+    .buy()
+    .callParams({
+      forward: [amount, baseAssetId],
+    })
+    .call();
+  await tokenContract.functions
+    .mint(
+      identityInput,
+      "0xcaadc5c961296450832e1f151eed1da690f11ab9ea5241d8c8c788284ccc16d0",
+      bn(amount * 100000000)
+    )
+    .call();
 }
-
 
 export async function getTokens(wallet) {
   const factoryContract = getTokenFactoryContract(wallet);
@@ -85,10 +92,23 @@ export async function getTokens(wallet) {
   const tokens = [];
 
   for (let i = 0; i < totalTokens.value.toNumber(); i++) {
-    const assetIdResponse = await factoryContract.functions.get_asset_ids(i).get();
-    const token_att = await tokenContract.functions.get_asset_attributes(assetIdResponse.value[0]).get();
-    tokens.push([assetIdResponse.value, token_att.value]);
+    const assetIdResponse = await factoryContract.functions
+      .get_asset_ids(i)
+      .get();
+    const token_att = await tokenContract.functions
+      .get_asset_attributes(assetIdResponse.value[0])
+      .get();
+
+    const tokenInfo = {
+      name: token_att.value[0],
+      ticker: token_att.value[1],
+      assertID: assetIdResponse.value[0],
+      contractId: assetIdResponse.value[1],
+    };
+    
+    console.log(tokenInfo)
+    tokens.push(tokenInfo);
   }
-  console.log(tokens)
+
   return tokens;
 }
