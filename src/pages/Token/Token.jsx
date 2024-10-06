@@ -5,6 +5,8 @@ import { backarrow, fuel } from "../../assets/icons";
 // import { giphy2 } from "../../assets/gif";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
+import ProposalsSection from "./Proposals";
+import CreateProposalModal from "./CreateProposalModal";
 
 const data = [
   { time: "10:00", price: 1.256 },
@@ -34,6 +36,7 @@ const Token = () => {
   const location = useLocation();
   const { tokenData } = location.state || {};
   const [tokenDetails, setTokenDetails] = useState(null);
+  const [isProposalModalOpen, setIsProposalModalOpen] = useState(false);
 
   const handleCommentSubmit = (e) => {
     e.preventDefault();
@@ -59,6 +62,11 @@ const Token = () => {
   if (!tokenDetails) {
     return <div className="text-white text-center">Loading...</div>;
   }
+
+  const handleProposalSubmit = (proposalData) => {
+    // you can handle the proposal submission here and send it to your backend
+    console.log("New proposal:", proposalData);
+  };
 
   return (
     <div className="bg-gray-900 text-white min-h-screen pt-10 p-4">
@@ -129,6 +137,9 @@ const Token = () => {
                   ))}
                 </div>
               </div>
+              <div className="bg-[#2A2A2A] rounded-lg p-4 mt-6">
+                <ProposalsSection />
+              </div>
             </div>
           </div>
 
@@ -180,6 +191,12 @@ const Token = () => {
                   There are 0 tokens still available for sale in the bonding
                   curve and there is 0 Fuel in the bonding curve.
                 </p>
+                <button
+                  onClick={() => setIsProposalModalOpen(true)}
+                  className="bg-[#4782E0] text-lg px-6 py-3  text-white active:bg-blue-700 hover:bg-blue-600  transition-colors rounded-lg mt-6"
+                >
+                  Create Proposal
+                </button>
               </div>
               <div className="mt-6">
                 <h3 className="text-lg font-semibold mb-2">Leave a Comment</h3>
@@ -217,6 +234,11 @@ const Token = () => {
           </div>
         </div>
       </div>
+      <CreateProposalModal
+        isOpen={isProposalModalOpen}
+        onClose={() => setIsProposalModalOpen(false)}
+        onSubmit={handleProposalSubmit}
+      />
     </div>
   );
 };
@@ -237,9 +259,8 @@ const BuySellSection = () => {
     e.preventDefault();
     try {
       // you can use the tokenDetails.contractId or other data here my oga
-    
+
       console.log("Trading token:", tokenDetails);
-  
     } catch (error) {
       console.error("Trading error:", error);
     }
