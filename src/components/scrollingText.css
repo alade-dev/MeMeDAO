@@ -4,10 +4,10 @@
 
 @keyframes scrollUpDown {
   0%, 100% {
-    transform: translateY(60%);
+    transform: translateY(40%);
   }
   50% {
-    transform: translateY(-50%);
+    transform: translateY(-20%);
   }
 }
 

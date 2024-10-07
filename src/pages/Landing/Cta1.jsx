@@ -19,11 +19,11 @@ const Cta = () => {
               Create your dream memefund
             </h3>
             <p className="text-[#D9D9D9] text-xl font-light mt-9 mb-7">
-              Bringing the meme world to the
+              The decentralized platform where
               <br />
-              community, engagement, and
+              memes meet the future of
               <br />
-              maximizing profit cap to the fullest
+              finance!
             </p>
             <div className="flex flex-wrap gap-4 lg:mt-8  justify-center lg:justify-start">
               <Link to="/create">

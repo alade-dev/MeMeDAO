@@ -19,20 +19,20 @@ const data = [
 
 const Token = () => {
   const [comments, setComments] = useState([
-    // {
-    //   user: "John123",
-    //   date: "29/05/2019",
-    //   text: "I knew this was a lucky shot, here comes the lambo",
-    //   upvotes: 5,
-    //   downvotes: 5,
-    // },
-    // {
-    //   user: "Jane456",
-    //   date: "01/06/2019",
-    //   text: "The market seems volatile today.",
-    //   upvotes: 3,
-    //   downvotes: 2,
-    // },
+    {
+      user: "Anonymous",
+      date: "29/05/2019",
+      text: "I knew this was a lucky shot, here comes the lambo",
+      upvotes: 5,
+      downvotes: 5,
+    },
+    {
+      user: "Seamless",
+      date: "01/06/2019",
+      text: "The market seems volatile today.",
+      upvotes: 3,
+      downvotes: 2,
+    },
   ]);
   const [newComment, setNewComment] = useState("");
   const location = useLocation();
@@ -185,13 +185,14 @@ const Token = () => {
                   </div>
                 </div>
                 <p className="text-sm font-semibold mb-4">
-                  When the market cap reaches $0 all the liquidity from the
-                  bonding curve will be deposited into DAO and burned,
-                  progression increases as the price goes up.
+                  Once a meme token reaches a $32,000 market cap, the community
+                  takes charge. At this point, $5,000 of liquidity is locked and
+                  burned to ensure the token’s long-term stability.
                 </p>
                 <p className="text-sm">
-                  There are 0 tokens still available for sale in the bonding
-                  curve and there is 0 Fuel in the bonding curve.
+                  After hitting the threshold, the DAO steps in to make key
+                  decisions on: Liquidity provision, Token burning, Staking,
+                  Community engagement, Promotion and marketing
                 </p>
                 <button
                   onClick={() => setIsProposalModalOpen(true)}
@@ -260,29 +261,40 @@ const BuySellSection = () => {
 
   const handleTrade = async (e) => {
     e.preventDefault();
-    
+
     try {
       // Retrieve the token amount from the input field
       const amount = parseFloat(e.target[0].value);
-      
+
       if (!amount || amount <= 0) {
         throw new Error("Invalid amount. Please enter a valid number.");
       }
-  
+
       // Logging the details of the trade
-      console.log(`Trading token: ${tokenDetails.name}, Amount: ${amount}, Action: ${selectedTrade}`);
-      console.log(tokenDetails.contractId, tokenDetails.assertID, wallet, amount)
-      
+      console.log(
+        `Trading token: ${tokenDetails.name}, Amount: ${amount}, Action: ${selectedTrade}`
+      );
+      console.log(
+        tokenDetails.contractId,
+        tokenDetails.assertID,
+        wallet,
+        amount
+      );
+
       // Determine if it's a Buy or Sell action and call the respective function
       if (selectedTrade === "Buy") {
-        console.log("Buying")
-        await buyToken(tokenDetails.contractId, tokenDetails.assertID, wallet, amount);
+        console.log("Buying");
+        await buyToken(
+          tokenDetails.contractId,
+          tokenDetails.assertID,
+          wallet,
+          amount
+        );
         console.log(`Successfully bought ${amount} of ${tokenDetails.name}`);
       } else if (selectedTrade === "Sell") {
         await sellToken(wallet, tokenDetails.contractId, amount);
         console.log(`Successfully sold ${amount} of ${tokenDetails.name}`);
       }
-      
     } catch (error) {
       console.error("Trading error:", error.message);
     }
