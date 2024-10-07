@@ -7,6 +7,8 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import ProposalsSection from "./Proposals";
 import CreateProposalModal from "./CreateProposalModal";
+import { buyToken } from "../../contractAPI";
+import { useWallet } from "@fuels/react";
 
 const data = [
   { time: "10:00", price: 1.256 },
@@ -248,6 +250,7 @@ const BuySellSection = () => {
   const location = useLocation();
   const { tokenData } = location.state || {};
   const [tokenDetails, setTokenDetails] = useState(null);
+  const { wallet } = useWallet();
 
   useEffect(() => {
     if (tokenData) {
@@ -257,14 +260,34 @@ const BuySellSection = () => {
 
   const handleTrade = async (e) => {
     e.preventDefault();
+    
     try {
-      // you can use the tokenDetails.contractId or other data here my oga
-
-      console.log("Trading token:", tokenDetails);
+      // Retrieve the token amount from the input field
+      const amount = parseFloat(e.target[0].value);
+      
+      if (!amount || amount <= 0) {
+        throw new Error("Invalid amount. Please enter a valid number.");
+      }
+  
+      // Logging the details of the trade
+      console.log(`Trading token: ${tokenDetails.name}, Amount: ${amount}, Action: ${selectedTrade}`);
+      console.log(tokenDetails.contractId, tokenDetails.assertID, wallet, amount)
+      
+      // Determine if it's a Buy or Sell action and call the respective function
+      if (selectedTrade === "Buy") {
+        console.log("Buying")
+        await buyToken(tokenDetails.contractId, tokenDetails.assertID, wallet, amount);
+        console.log(`Successfully bought ${amount} of ${tokenDetails.name}`);
+      } else if (selectedTrade === "Sell") {
+        await sellToken(wallet, tokenDetails.contractId, amount);
+        console.log(`Successfully sold ${amount} of ${tokenDetails.name}`);
+      }
+      
     } catch (error) {
-      console.error("Trading error:", error);
+      console.error("Trading error:", error.message);
     }
   };
+
   if (!tokenDetails) {
     return <div className="text-white text-center">Loading...</div>;
   }

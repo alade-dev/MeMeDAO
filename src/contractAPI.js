@@ -29,8 +29,7 @@ export async function deployDaoContract(wallet, assetId) {
   const factoryContract = getTokenFactoryContract(wallet);
 
   // Deploy the contract
-  const { waitForResult, contractId, waitForTransactionId } =
-    await factory.deploy();
+  const { waitForResult, contractId, waitForTransactionId } = await factory.deploy();
 
   // Retrieve the transactionId
   const transactionId = await waitForTransactionId();
@@ -63,19 +62,37 @@ export async function initializeContract(contract) {
   const identityInput = { Address: addressInput };
 }
 
-export async function buyToken(contractId, wallet, amount) {
+export async function buyToken(contractId, assetId, wallet, amount) {
+  console.log("Minting")
   const daoContract = getDaoContract(contractId, wallet);
-  const tokenContract = getTokenContract(wallet);
-  const baseAssetId = daoContract.provider.getBaseAssetId();
-  console.log(await daoContract.functions.governance_asset_id().get());
-  const addressInput = { bits: tokenContract.account.address.toB256() };
-  const identityInput = { Address: addressInput };
-  await daoContract.functions
-    .buy()
-    .callParams({
-      forward: [amount, baseAssetId],
-    })
-    .call();
+  // const tokenContract = getTokenContract(wallet);
+  // ///const recipient = { type: 'Address', value: '0xb6e7b4c6ed737c8326630741a6482554b8864719d6abedd786a83ef27b878080' }; // IdentityInput
+  // const addressInput = { bits: '0xb6e7b4c6ed737c8326630741a6482554b8864719d6abedd786a83ef27b878080' };
+  // const identityInput = { Address: addressInput };
+  // const subId = '0xcca9e957d11037a760b37583e50d27fbdea57af59921684f671607d74038e0fa';
+  // //const amount = 1000;
+  // const call = await tokenContract.functions.mint(identityInput, subId, amount).call();
+  // await call.waitForResult();
+
+  try {
+    // Call the buy function on the contract
+    console.log(assetId.bits, amount)
+    const balance = await wallet.getBalance(wallet.provider.getBaseAssetId());
+    console.log('Wallet balance:', balance.toString());
+
+    const call = await daoContract.functions
+      .buy(assetId) // Pass the asset ID if needed
+      .callParams({
+        forward: [amount, assetId.bits],
+      })
+      .txParams({ variableOutputs: 1 })
+      .call();
+
+    await call.waitForResult();
+    console.log("Token purchase successful");
+  } catch (error) {
+    console.error("Error purchasing token:", error);
+  }
 }
 
 export async function getTokens(wallet) {
