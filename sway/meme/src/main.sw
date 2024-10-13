@@ -17,6 +17,7 @@ use std::{
     },
     hash::Hash,
 };
+use std::asset::mint_to;
 
 use ::data_structures::{Proposal, ProposalInfo, State, Votes};
 use ::errors::{CreationError, InitializationError, ProposalError, UserError};
@@ -75,26 +76,33 @@ impl Memetro for Contract {
 
     /// Buy function: Allows users to buy meme coins before DAO initialization
     #[payable]
-    #[storage(read, write)]
-    fn buy(meme_coin_asset: AssetId) {
-        storage.meme_coin_asset.write(meme_coin_asset);
-        
-        require(storage.meme_coin_asset.read() == msg_asset_id(), UserError::IncorrectAssetSent);
-        require(msg_amount() > 0, UserError::AmountCannotBeZero);
+#[storage(read, write)]
+fn buy(meme_coin_asset: AssetId) {
+    let buyer = msg_sender().unwrap();
+    let asset_id = msg_asset_id();
+    let amount = msg_amount();
+    let base_asset = AssetId::base();
 
-        let buyer = msg_sender().unwrap();
-        storage
-            .coin_balances
-            .insert(buyer, msg_amount() + storage.coin_balances.get(buyer).try_read().unwrap_or(0));
+    storage.meme_coin_asset.write(meme_coin_asset);
+    
+    require(base_asset == asset_id, UserError::IncorrectAssetSent);
+    require(amount > 0, UserError::AmountCannotBeZero);
 
-        storage.total_value.write(storage.total_value.read() + msg_amount());
+    // Mint the purchased amount of meme_coin_asset to the buyer
+    mint_to(buyer, SubId::zero(), amount);
 
-        // Check if threshold is met for DAO initialization
-        if storage.total_value.read() >= storage.threshold.read() {
-            storage.state.write(State::Initialized);
-            log(ThresholdReachedEvent { buyer, total_value: storage.total_value.read() });
-        }
+    storage
+        .coin_balances
+        .insert(buyer, amount + storage.coin_balances.get(buyer).try_read().unwrap_or(0));
+
+    storage.total_value.write(storage.total_value.read() + amount);
+
+    // Check if threshold is met for DAO initialization
+    if storage.total_value.read() >= storage.threshold.read() {
+        storage.state.write(State::Initialized);
+        log(ThresholdReachedEvent { buyer, total_value: storage.total_value.read() });
     }
+}
 
     /// Sell function: Allows users to sell meme coins before DAO initialization
     #[storage(read, write)]
