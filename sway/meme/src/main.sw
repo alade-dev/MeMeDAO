@@ -7,7 +7,10 @@ mod interface;
 mod utils;
 
 use std::{
-    asset::transfer,
+    asset::{
+        mint, 
+        transfer
+    },
     auth::msg_sender,
     block::height,
     call_frames::msg_asset_id,
@@ -17,7 +20,6 @@ use std::{
     },
     hash::Hash,
 };
-use std::asset::mint_to;
 
 use ::data_structures::{Proposal, ProposalInfo, State, Votes};
 use ::errors::{CreationError, InitializationError, ProposalError, UserError};
@@ -88,8 +90,12 @@ impl Memetro for Contract {
         require(base_asset == asset_id, UserError::IncorrectAssetSent);
         require(amount > 0, UserError::AmountCannotBeZero);
 
-        // Mint the purchased amount of meme_coin_asset to the buyer
-        mint_to(buyer, SubId::zero(), amount);
+        // Mint the purchased amount of meme_coin_asset
+        let sub_id = SubId::zero();
+        mint(sub_id, amount);
+
+        // Transfer the minted tokens to the buyer
+        transfer(buyer, meme_coin_asset, amount);
 
         storage
             .coin_balances
